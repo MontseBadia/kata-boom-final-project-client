@@ -44,4 +44,12 @@ export class AuthService {
       });
   }
 
+  logout(): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.post(`${this.baseUrl}/logout`, {}, options)
+      .toPromise();
+  }
+
 }
