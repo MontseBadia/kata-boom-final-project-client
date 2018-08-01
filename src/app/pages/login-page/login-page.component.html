@@ -1,3 +1,43 @@
-<p>
-  login-page works!
-</p>
+<div class="section">
+
+  <h2>Log In</h2>
+
+  <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
+      <label>Username</label>
+      <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required [disabled]="processing" />
+      <div *ngIf="feedbackEnabled && usernameField.errors">
+        <p *ngIf="usernameField.errors.required" class="validation">username required</p>
+      </div>
+    </div>
+
+    <div class="field" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
+      <label>Password</label>
+      <input type="text" name="password" [(ngModel)]="password" #passwordField="ngModel" required [disabled]="processing" />
+      <div *ngIf="feedbackEnabled && passwordField.errors">
+        <p *ngIf="passwordField.errors.required" class="validation">password required</p>
+      </div>
+    </div>
+
+    <div class="field submit">
+      <button type="submit" [disabled]="processing">Log in</button>
+      <div *ngIf="feedbackEnabled && form.invalid">
+        <p class="validation">there are errors in the form, please review the fields</p>
+      </div>
+
+      <div *ngIf="error" class="validation">
+        <div [ngSwitch]="error.code">
+          <p *ngSwitchCase="'not-found'">username or password are incorrect</p>
+          <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <p>Do not have an accout?
+    <a [routerLink]="['/signup']">Sign up here</a>
+  </p>
+
+</div>

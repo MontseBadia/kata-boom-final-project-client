@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 // ----- ROUTES ------
 const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
+  { path: 'login', component: LoginPageComponent },
 ];
 
 @NgModule({
