@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '../../node_modules/@angular/router';
 
 import { AuthService } from './services/auth.service';
@@ -8,9 +8,21 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  loading = true;
+  anon: boolean;
+  user: any;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit() {
+    this.authService.userChange$.subscribe((user) => {
+      this.loading = false;
+      this.user = user;
+      this.anon = !user;
+    });
+  }
 
   logout() {
     this.authService.logout()
