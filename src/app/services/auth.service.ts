@@ -20,4 +20,13 @@ export class AuthService {
       .toPromise();
   }
 
+  login(username: string, password: string): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = { username, password };
+    return this.httpClient.post(`${this.baseUrl}/login`, data, options)
+      .toPromise();
+  }
+
 }
