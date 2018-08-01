@@ -16,13 +16,11 @@ export class AuthService {
   private user: any;
   private userChange: Subject<any> = new Subject();
 
-  private API_URL = 'http://localhost:3000/auth';
-
   userChange$: Observable<any> = this.userChange.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
-  private setUser(user?: any) {
+  private setUser(user?: any) { // Why private?
     this.user = user;
     this.userChange.next(user);
     return user;
@@ -39,7 +37,7 @@ export class AuthService {
     const data = { username, password };
     return this.httpClient.post(`${this.baseUrl}/signup`, data, options)
       .toPromise()
-      .then((user) => this.setUser(user));
+      .then((user) => this.setUser(user)); // Why does it work without this? Why do we need it here if it is already set while doing me()?
   }
 
   login(username: string, password: string): Promise<any> {

@@ -9,6 +9,7 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { AppComponent } from './app.component';
 
 // ----- PAGES ------
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
@@ -19,9 +20,11 @@ import { AuthService } from './services/auth.service';
 // ----- GUARDS ------
 import { RequireAnonGuard } from './guards/require-anon.guard';
 import { RequireUserGuard } from './guards/require-user.guard';
+import { InitAuthGuard } from './guards/init-auth.guard';
 
 // ----- ROUTES ------
 const routes: Routes = [
+  { path: '', component: HomePageComponent, canActivate: [InitAuthGuard] },
   { path: 'signup', component: SignupPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] }
@@ -30,6 +33,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    HomePageComponent,
     LoginPageComponent,
     SignupPageComponent,
     ProfilePageComponent
@@ -43,7 +47,8 @@ const routes: Routes = [
   providers: [
     AuthService,
     RequireAnonGuard,
-    RequireUserGuard
+    RequireUserGuard,
+    InitAuthGuard
   ],
   bootstrap: [AppComponent]
 })
