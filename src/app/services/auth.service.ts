@@ -29,4 +29,19 @@ export class AuthService {
       .toPromise();
   }
 
+  me(): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseUrl}/me`, options)
+      .toPromise()
+      .catch((err) => {
+        if (err.status === 404) {
+          return null;
+        } else {
+          Promise.reject(new Error('unexpected error'));
+        }
+      });
+  }
+
 }
