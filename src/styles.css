@@ -40,13 +40,13 @@ html {
   #site-header {
     padding: 30px 0;
     color: white;
-    background: #111;
+    background: rgb(190, 180, 247);
   }
   
   #site-footer {
     color: white;
     padding: 60px 0;
-    background: #111;
+    background: rgb(190, 180, 247);
   }
   
   #site-main {
@@ -99,7 +99,7 @@ form .submit button {
   padding: 5px 20px;
   text-align: center;
   font-size: 16px;
-  background-color: cyan;
+  background-color: rgb(224, 158, 193);
   cursor: pointer;
 }
 
