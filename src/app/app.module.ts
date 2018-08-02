@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
+import { AceEditorModule } from 'ng2-ace-editor';
+
 // ----- COMPONENTS ------
 import { AppComponent } from './app.component';
 
@@ -39,13 +41,14 @@ const routes: Routes = [
     LoginPageComponent,
     SignupPageComponent,
     ProfilePageComponent,
-    KataPageComponent
+    KataPageComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    AceEditorModule
   ],
   providers: [
     AuthService,
