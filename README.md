@@ -10,25 +10,25 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 
 ## User Stories
 
-  **404:** As an anon/user I can see a 404 page if I try to reach a page that does not exist so that I know it's my fault
+  **404:** As an anon/user I want to see a 404 page if I try to reach a page that does not exist so that I know it's my fault
 
-  **500:** As an anon/user I can see a 500 page if I try to reach a page and I can't because there is a server error
+  **500:** As an anon/user I want to see a 500 page if I try to reach a page and I can't so that I know there is a server error
   
   **Signup:** As an anon I can sign up in the platform so that I can do a kata
   
   **Login:** As a anon I can login to the platform so that I can do a kata
   
-  **Logout:** As a user I can logout from the platform so I can stop using it 
+  **Logout:** As a user I can logout from the platform so that no one else can use my account 
 
   **Get Random Kata:** As a user I want to get a random kata so that I can do it
  
-  **Type Solution:** As a user I want to type my solution to the kata in the code editor
+  **Type Solution:** As a user I want to type my solution to the kata so that I can submit it
 
-  **Check Kata:** As a user I want to check if my solution to the kata passess all required tests
+  **Check Kata:** As a user I want to send my solution so that I can check if it has passed all tests
 
-  **Submit Kata:** As a user I want to submit my kata if it has passed all required tests
+  **Submit Kata:** As a user I want to submit my kata so that I know if it was right
 
-  **See Profile:** As a user I want to be able to see my profile and the katas I have already done
+  **See Profile:** As a user I want to see my profile so that I see the katas I 've already done
 
 
 ## Backlog
@@ -43,7 +43,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 
   **Accet Kata Challenge:** As a user I would like to accept a kata challenge
 
-  **See Friends' Profile:** As a user I would like to see my friends' profiles and the katas they have already done
+  **See Friends' Profile:** As a user I would like to see my friends' profiles and the katas they have done
 
   **Comment on Katas:** As a user I would like to comment on my own and on my friends' katas
 
@@ -64,9 +64,10 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - /profile - Details of user, list of katas and option to get kata
   - /kata/:id - Description of kata and editor to solve kata
 
-  ### Backlog
+### Backlog
 
   - /profile/friend/:id - Friend's profile
+  - etc.
 
 ## Services
 
@@ -94,14 +95,14 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 ## Components
 
 - Navbar component
+  - I
+  - O
 - Kata Card component
-- Login/Signup form component
-
-## IO
-
-- Kata Card shows kata details
-- Kata List lists all katas done by a user
-- Login/Sign up form outputs the form to the parent component
+  - I: kata details
+  - O
+- Login/Signup form components
+  - I
+  - O: submit form
 
 ## Guards
 
@@ -118,72 +119,39 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   User model
 
   ```
-  User {
-    username: {
-      type: string,
-      required: true,
-      unique: true
-    },
-    email: {
-      type: string,
-      required: true,
-      unique: true
-    },
-    password: {
-      type: string,
-      required: true,
-      unique: true
-    },
-    katas: [ {
-      kata: {
-        type: ObjectId,
-        ref: Kata,
-        required: true
-      },
-      solution: {
-        type: string,
-        required: true
-      }
-    } ]
-  }
+  username: { type: string / required / unique },
+  email: { type: string / required / unique },
+  password: { type: string / required },
+  katas: [ { kata: { type: ObjectId / ref: Kata }, solution: { type: string } } ]
   ```
 
   Kata model
 
   ```
-  Kata {
-  name: {
-    type: string,
-    required: true
-  },
-  functionName: {
-    type: string,
-    required: true
-  },
-  description: {
-    type: string,
-    required: true
-  },
-  tests: [ {
-    params: [
-      mixed
-    ],   
-    result: {
-      type: string,
-      required: true
-    }
-  } ]
-}
-```
+  name: { type: string / required },
+  functionName: { type: string / required },
+  description: { type: string / required },
+  tests: [ { params: [ mixed ], result: { type: mixed / required } } ]
+  ```
 
 ## API Endpoints/Backend Routes
 
-  - GET /auth/me
-  - POST /auth/signup
-  - POST /auth/login
-  - POST /auth/logout
+- GET /auth/me
+  - user only (404)
+- POST /auth/signup
+  - anon only (401)
+- POST /auth/login
+  - anon only (401)
+- POST /auth/logout
+  - user only (404)
 
-  - GET /profile
-  - GET /kata/random/:id
-  - POST /kata/:id/check - body (solution)
-  - POST /user/me/katas - body (kataId, solution)
+- GET /profile
+  - user only (401)
+- GET /kata/random
+  - user only (401)
+- POST /kata/:id/check 
+  - user only (401)
+  - body (solution)
+- POST /user/me/katas 
+  - user only (401)
+  - body (kataId, solution)
