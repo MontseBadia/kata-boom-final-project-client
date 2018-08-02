@@ -62,7 +62,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - /auth/signup - Signup form
   - /auth/login - Login form
   - /profile - Details of user, list of katas and option to get kata
-  - /kata/:id - Description of kata and editor to solve kata
+  - /kata/name - Description of kata and editor to solve kata
 
 ### Backlog
 

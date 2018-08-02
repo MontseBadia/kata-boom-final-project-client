@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: '', component: HomePageComponent, canActivate: [InitAuthGuard] },
   { path: 'signup', component: SignupPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
-  { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] }
+  { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
+  { path: 'kata/:name', component: LoginPageComponent },
 ];
 
 @NgModule({
