@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '../../../../node_modules/@angular/router';
+
+import { KataService } from '../../services/kata.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  kata: {};
+  kataId: any;
+
+  constructor(private kataService: KataService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  getRandomKata() {
+    this.kataService.getRandom()
+      .then((kata) => {
+        this.kataId = kata._id;
+        this.router.navigate([`/kata/${this.kataId}`]);
+      })
+      .catch((err) => {
+        // do something
+      });
+  }
 }
