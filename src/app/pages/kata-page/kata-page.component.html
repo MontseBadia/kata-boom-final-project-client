@@ -1,0 +1,16 @@
+<h2>Random Kata</h2>
+
+<div class="loading" *ngIf="!randomKata">...loading...</div>
+
+<div *ngIf="randomKata">
+  <h4 class="capitalize">Name: {{randomKata.name}}</h4>
+  <p>Description: {{randomKata.description}}</p>
+  <div *ngFor="let test of randomKata.tests">
+    <p>Tests: {{randomKata.functionName}}(
+      <span *ngFor="let param of test.params">
+        <span>{{param}}</span>
+      </span>
+      )
+    </p>
+  </div>
+</div>

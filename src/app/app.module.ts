@@ -13,6 +13,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { KataPageComponent } from './pages/kata-page/kata-page.component';
 
 // ----- SERVICES ------
 import { AuthService } from './services/auth.service';
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
-  { path: 'kata/:name', component: LoginPageComponent },
+  { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
 ];
 
 @NgModule({
@@ -37,7 +38,8 @@ const routes: Routes = [
     HomePageComponent,
     LoginPageComponent,
     SignupPageComponent,
-    ProfilePageComponent
+    ProfilePageComponent,
+    KataPageComponent
   ],
   imports: [
     BrowserModule,
