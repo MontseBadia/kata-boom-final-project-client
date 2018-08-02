@@ -20,9 +20,9 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   
   **Logout:** As a user I can logout from the platform so I can stop using it 
 
-  **Get Kata:** As a user I want to go to the selected kata to be able to do it
+  **Get Random Kata:** As a user I want to get a random kata so that I can do it
  
-  **Type Solution:** As a user I want to type my possible kata solution to the editor in the platform
+  **Type Solution:** As a user I want to type my solution to the kata in the code editor
 
   **Check Kata:** As a user I want to check if my solution to the kata passess all required tests
 
@@ -77,7 +77,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - auth.getMe()
 
 - Kata Service
-  - kata.getOne(id)
+  - kata.getRandom()
   - kata.check(id, solution)
   - kata.submit(id, solution)  
 
@@ -131,10 +131,11 @@ Platform in which users can solve easy-level katas and send them as a challenge 
     },
     password: {
       type: string,
-      required: true
+      required: true,
+      unique: true
     },
-    finishedKata: [
-      kataId: {
+    katas: [ {
+      kata: {
         type: ObjectId,
         ref: Kata,
         required: true
@@ -143,7 +144,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
         type: string,
         required: true
       }
-    ]
+    } ]
   }
   ```
 
@@ -155,10 +156,23 @@ Platform in which users can solve easy-level katas and send them as a challenge 
     type: string,
     required: true
   },
+  functionName: {
+    type: string,
+    required: true
+  },
   description: {
     type: string,
     required: true
-  }
+  },
+  tests: [ {
+    params: [
+      mixed
+    ],   
+    result: {
+      type: string,
+      required: true
+    }
+  } ]
 }
 ```
 
@@ -170,6 +184,6 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - POST /auth/logout
 
   - GET /profile
-  - GET /kata/:id
-  - POST /kata/:id/check
-  - POST /kata/:id/submit
+  - GET /kata/random/:id
+  - POST /kata/:id/check - body (solution)
+  - POST /user/me/katas - body (kataId, solution)
