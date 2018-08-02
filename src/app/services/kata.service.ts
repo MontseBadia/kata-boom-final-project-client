@@ -7,7 +7,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 export class KataService {
 
-  baseUrl = 'http://localhost:3000/kata';
+  baseKataUrl = 'http://localhost:3000/kata';
+  baseUserUrl = 'http://localhost:3000/user/me';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,7 +16,30 @@ export class KataService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUrl}/random`, options)
+    return this.httpClient.get(`${this.baseKataUrl}/random`, options)
+      .toPromise();
+  }
+
+  checkKata(inputCode, kataId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {
+      inputCode: inputCode
+    };
+    return this.httpClient.post(`${this.baseKataUrl}/${kataId}/check`, data, options)
+      .toPromise();
+  }
+
+  submitKata(inputCode, kataId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {
+      inputCode: inputCode,
+      kataId: kataId
+    };
+    return this.httpClient.post(`${this.baseUserUrl}/katas`, data, options)
       .toPromise();
   }
 

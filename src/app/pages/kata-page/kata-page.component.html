@@ -13,6 +13,15 @@
       )
     </p>
   </div>
-  <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
-    [durationBeforeCallback]="1000" (textChanged)="onChange($event)" style="min-height: 200px; width:100%; overflow: auto;"></div>
+
+  <form (ngSubmit)="handleSubmit(form, randomKata._id)" #form="ngForm">
+    <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
+      [durationBeforeCallback]="1000" (textChanged)="onChange($event)" style="min-height: 200px; width:100%; overflow: auto;"></div>
+    <div class="field submit">
+      <button type="submit">Test</button>
+      <button type="submit" (click)="testAndSubmit=true">Submit</button>
+    </div>
+  </form>
+
+
 </div>
