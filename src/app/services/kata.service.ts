@@ -25,7 +25,7 @@ export class KataService {
       withCredentials: true
     };
     const data = {
-      inputCode: inputCode
+      inputCode
     };
     return this.httpClient.post(`${this.baseKataUrl}/${kataId}/check`, data, options)
       .toPromise();
@@ -36,8 +36,8 @@ export class KataService {
       withCredentials: true
     };
     const data = {
-      inputCode: inputCode,
-      kataId: kataId
+      inputCode,
+      kataId
     };
     return this.httpClient.post(`${this.baseUserUrl}/katas`, data, options)
       .toPromise();

@@ -13,7 +13,7 @@ import { KataService } from '../../services/kata.service';
 
 export class KataPageComponent {
 
-  // --- VARIABLES FOR CODE EDITOR
+  // --- CODE EDITOR VARIABLES
   text: any;
   options: any = { maxLines: 1000, printMargin: false, useWorker: true };
   inputCode: any;
@@ -29,6 +29,8 @@ export class KataPageComponent {
 
   randomKataId: any;
 
+  passedTests: boolean;
+
   constructor(private kataService: KataService) {
     this.kataService.getRandom()
       .then((kata) => {
@@ -38,21 +40,27 @@ export class KataPageComponent {
       });
   }
 
+  // --- SAVES INPUT CODE
   onChange(inputCode) {
-    // console.log('new code:', code);
     this.inputCode = inputCode;
   }
 
   handleSubmit(form, randomKataId) {
     this.error = '';
     this.feedbackEnabled = true;
+
     if (form.valid) {
       this.processing = true;
       this.randomKataId = randomKataId;
 
       if (this.testAndSubmit === false) {
         this.kataService.checkKata(this.inputCode, this.randomKataId)
-          .then((result) => {
+          .then((isCorrect) => {
+            if (isCorrect) {
+              this.passedTests = true;
+            } else {
+              this.passedTests = false;
+            }
             this.processing = false; // check if I need this
             this.testAndSubmit = false;
             // stays in the same page
@@ -60,7 +68,7 @@ export class KataPageComponent {
           .catch((err) => {
             this.error = err.error;
             this.processing = false;
-            this.feedbackEnabled = false;
+            // this.feedbackEnabled = false;
           });
 
       } else {
@@ -73,7 +81,7 @@ export class KataPageComponent {
           .catch((err) => {
             this.error = err.error;
             this.processing = false;
-            this.feedbackEnabled = false;
+            // this.feedbackEnabled = false;
           });
       }
     }

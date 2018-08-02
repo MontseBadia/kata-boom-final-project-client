@@ -20,6 +20,12 @@
     <div class="field submit">
       <button type="submit">Test</button>
       <button type="submit" (click)="testAndSubmit=true">Submit</button>
+      <div *ngIf="!passedTests && feedbackEnabled">
+        <p class="validation">Ohh..! You have failed the tests. Keep trying</p>
+      </div>
+      <div *ngIf="passedTests && feedbackEnabled">
+        <p class="validation">CONGRATS!! You have passed the tests</p>
+      </div>
     </div>
   </form>
 
