@@ -3,6 +3,7 @@ import 'brace';
 import 'brace/theme/twilight';
 import 'brace/mode/javascript';
 
+import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { KataService } from '../../services/kata.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { KataService } from '../../services/kata.service';
   styleUrls: ['./kata-page.component.css']
 })
 
-export class KataPageComponent {
+export class KataPageComponent implements OnInit {
 
   // --- CODE EDITOR VARIABLES
   text: any;
@@ -26,12 +27,17 @@ export class KataPageComponent {
   passedTests: boolean;
   emptyEditor: boolean;
 
-  constructor(private kataService: KataService) {
-    this.kataService.getRandom()
-      .then((kata) => {
-        this.randomKata = kata;
-        // --- REPLACE DASHES OF FUNCTION NAME
-        this.randomKata.name = this.randomKata.name.replace(/-/g, ' ');
+  constructor(private route: ActivatedRoute, private kataService: KataService) { }
+
+  ngOnInit() {
+    this.route.params
+      .subscribe((kataName) => {
+        this.kataService.getOne(kataName)
+          .then((kata) => {
+            this.randomKata = kata;
+            // --- REPLACE DASHES OF FUNCTION NAME
+            this.randomKata.name = this.randomKata.name.replace(/-/g, ' ');
+          });
       });
   }
 

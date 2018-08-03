@@ -20,6 +20,14 @@ export class KataService {
       .toPromise();
   }
 
+  getOne(name): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseKataUrl}/${name}`, options)
+      .toPromise();
+  }
+
   checkKata(inputCode, kataId): Promise<any> {
     const options = {
       withCredentials: true
