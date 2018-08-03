@@ -79,6 +79,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 
 - Kata Service
   - kata.getRandom()
+  - getOne(name)
   - kata.check(id, solution)
   - kata.submit(id, solution)  
 
@@ -149,6 +150,9 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - user only (401)
 - GET /kata/random
   - user only (401)
+- GET /kata/:name
+  - user only (401)
+  - body (kata)
 - POST /kata/:id/check 
   - user only (401)
   - body (solution)

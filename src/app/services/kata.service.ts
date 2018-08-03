@@ -24,7 +24,11 @@ export class KataService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseKataUrl}/${name}`, options)
+    const data = {
+      name: name.name,
+      // id: name
+    };
+    return this.httpClient.get(`${this.baseKataUrl}/${data.name}`, options)
       .toPromise();
   }
 
