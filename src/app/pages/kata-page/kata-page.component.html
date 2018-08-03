@@ -20,12 +20,30 @@
     <div class="field submit">
       <button type="submit">Test</button>
       <button type="submit" (click)="testAndSubmit=true">Submit</button>
+
       <div *ngIf="!passedTests && feedbackEnabled">
-        <p class="validation">Ohh..! You have failed the tests. Keep trying</p>
+        <div *ngIf="error">
+          <div [ngSwitch]="error.code" class="validation">
+            <div *ngIf="emptyEditor">
+              <p *ngSwitchCase="'unexpected-identifier'">Please type some input! Test could not be submitted</p>
+              <p *ngSwitchDefault>An unexpected error occured, please try again</p>
+            </div>
+            <div *ngIf="!emptyEditor">
+              <p *ngSwitchCase="'unexpected-identifier'">Unexpected identifier! Test could not be submitted</p>
+              <p *ngSwitchDefault>An unexpected error occured, please try again</p>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!error && feedbackEnabled">
+          <p class="validation">Ohh..! You have failed the tests. Keep trying</p>
+        </div>
       </div>
+
       <div *ngIf="passedTests && feedbackEnabled">
         <p class="validation">CONGRATS!! You have passed the tests</p>
+        <p style="white-space: pre-wrap">{{inputCode}}</p>
       </div>
+
     </div>
   </form>
 

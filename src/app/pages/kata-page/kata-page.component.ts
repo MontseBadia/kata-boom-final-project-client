@@ -16,20 +16,15 @@ export class KataPageComponent {
   // --- CODE EDITOR VARIABLES
   text: any;
   options: any = { maxLines: 1000, printMargin: false, useWorker: true };
-  inputCode: any;
+  inputCode: any = '';
 
-  randomKata: {
-    name: string
-  };
+  randomKata: { name: string };
   testAndSubmit = false;
-
   feedbackEnabled = false;
   error = null;
-  processing = false;
-
   randomKataId: any;
-
   passedTests: boolean;
+  emptyEditor: boolean;
 
   constructor(private kataService: KataService) {
     this.kataService.getRandom()
@@ -48,9 +43,10 @@ export class KataPageComponent {
   handleSubmit(form, randomKataId) {
     this.error = '';
     this.feedbackEnabled = true;
+    this.passedTests = false;
+    this.emptyEditor = true;
 
     if (form.valid) {
-      this.processing = true;
       this.randomKataId = randomKataId;
 
       if (this.testAndSubmit === false) {
@@ -58,29 +54,26 @@ export class KataPageComponent {
           .then((isCorrect) => {
             if (isCorrect) {
               this.passedTests = true;
-            } else {
-              this.passedTests = false;
             }
-            this.processing = false; // check if I need this
             this.testAndSubmit = false;
             // stays in the same page
           })
           .catch((err) => {
             this.error = err.error;
-            this.processing = false;
+            if (this.inputCode !== '') {
+              this.emptyEditor = false;
+            }
             // this.feedbackEnabled = false;
           });
 
       } else {
         this.kataService.submitKata(this.inputCode, this.randomKataId)
           .then((result) => {
-            this.processing = false;
             this.testAndSubmit = false;
             // stays in the same page
           })
           .catch((err) => {
             this.error = err.error;
-            this.processing = false;
             // this.feedbackEnabled = false;
           });
       }
