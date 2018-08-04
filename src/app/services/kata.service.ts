@@ -26,7 +26,6 @@ export class KataService {
     };
     const data = {
       name: name.name,
-      // id: name
     };
     return this.httpClient.get(`${this.baseKataUrl}/${data.name}`, options)
       .toPromise();

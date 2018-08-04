@@ -30,7 +30,7 @@ export class KataPageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private kataService: KataService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { // does this go inside oninit?
     this.route.params
       .subscribe((kataName) => {
         this.kataService.getOne(kataName)
@@ -57,7 +57,7 @@ export class KataPageComponent implements OnInit {
     if (form.valid) {
       this.randomKataId = randomKataId;
 
-      if (this.testAndSubmit === false) {
+      if (this.testAndSubmit === false) { // ---- So that it does the check and not the submit
         this.kataService.checkKata(this.inputCode, this.randomKataId)
           .then((isCorrect) => {
             if (isCorrect) {

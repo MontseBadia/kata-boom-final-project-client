@@ -25,7 +25,7 @@
         <div *ngIf="error">
           <div [ngSwitch]="error.code" class="validation">
             <div *ngIf="emptyEditor">
-              <p *ngSwitchCase="'unexpected-identifier'">Please type some input! Test could not be submitted</p>
+              <p *ngSwitchCase="'no-input-provided'">Please type some input! Test could not be submitted</p>
               <p *ngSwitchDefault>An unexpected error occured, please try again</p>
             </div>
             <div *ngIf="!emptyEditor">
