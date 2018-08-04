@@ -24,6 +24,7 @@ export class KataPageComponent implements OnInit {
   randomKataId: any;
   passedTests: boolean;
   emptyEditor: boolean;
+  randomKataResults: [any];
 
   // --- CODE EDITOR VARIABLES
   text: any;
@@ -75,15 +76,17 @@ export class KataPageComponent implements OnInit {
 
       if (this.testAndSubmit === false) { // ---- So that it does the check and not the submit
         this.kataService.checkKata(this.inputCode, this.randomKataId)
-          .then((isCorrect) => {
+          .then((data) => {
+            this.randomKataResults = data.evaluation;
             this.feedbackEnabled = true;
-            if (isCorrect) {
+            if (data.isCorrect) {
               this.passedTests = true;
             }
             this.testAndSubmit = false;
             // stays in the same page
           })
           .catch((err) => {
+            this.feedbackEnabled = true;
             this.error = err.error;
             if (this.inputCode !== '') {
               this.emptyEditor = false;
