@@ -11,7 +11,6 @@ import { KataService } from '../../services/kata.service';
 export class ProfilePageComponent implements OnInit {
 
   kata: {};
-  kataName: string;
 
   constructor(private kataService: KataService, private router: Router) { }
 
@@ -20,9 +19,8 @@ export class ProfilePageComponent implements OnInit {
 
   getRandomKata() {
     this.kataService.getRandom()
-      .then((kata) => {
-        this.kataName = kata.name;
-        this.router.navigate([`/kata/${this.kataName}`]);
+      .then((kataName) => {
+        this.router.navigate([`/kata/${kataName}`]);
       })
       .catch((err) => {
         this.router.navigate(['/**']);
