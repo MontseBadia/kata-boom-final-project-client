@@ -6,12 +6,20 @@
   <h4 class="capitalize">Name: {{randomKata.name}}</h4>
   <p>Description: {{randomKata.description}}</p>
   <div *ngFor="let test of randomKata.tests">
-    <p>Tests: {{randomKata.functionName}} (
-      <span *ngFor="let param of test.params; let last = last">
-        <span *ngIf="!last">{{param}}, </span>
-        <span *ngIf="last">{{param}}</span>
-      </span> )
-    </p>
+    <div>Tests: {{randomKata.functionName}} (
+      <span *ngIf="allowQuotes">
+        <span *ngFor="let param of test.params; let last = last">
+          <span *ngIf="!last">{{param}}, </span>
+          <span *ngIf="last">{{param}}</span>
+        </span> )
+      </span>
+      <span *ngIf="!allowQuotes">
+        <span *ngFor="let param of test.params; let last = last">
+          <span *ngIf="!last">{{param}}, </span>
+          <span *ngIf="last">{{param}}</span>
+        </span> )
+      </span>
+    </div>
   </div>
 
   <form (ngSubmit)="handleSubmit(form, randomKata._id)" #form="ngForm">

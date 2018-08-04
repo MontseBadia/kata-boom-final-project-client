@@ -15,7 +15,9 @@ import { KataService } from '../../services/kata.service';
 
 export class KataPageComponent implements OnInit {
 
-  randomKata: { name: string, functionName: string, parameters: [string] };
+  randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any }] };
+  // DO NOT FORGET TO DECLARE AS [ ] --> MEMORY CRASHES!!
+  allowQuotes: boolean;
   testAndSubmit = false;
   feedbackEnabled = false;
   error = null;
@@ -37,11 +39,21 @@ export class KataPageComponent implements OnInit {
           .then((kata) => {
             this.randomKata = kata;
             this.randomKata.functionName = kata.functionName;
+            this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
             this.randomKata.parameters = kata.parameters;
             this.text = `function ${this.randomKata.functionName} (${this.randomKata.parameters}) {
 
 }`;
-            this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
+            if (typeof (kata.tests[0].params[0]) === 'string') { // --- Puts params in quotes in case of strings
+              for (let x = 0; x < kata.tests.length; x++) {
+                for (let y = 0; y < kata.tests[x].params.length; y++) {
+                  this.randomKata.tests[x].params[y] = '"' + this.randomKata.tests[x].params[y] + '"';
+                  this.allowQuotes = true;
+                }
+              }
+            } else {
+              this.allowQuotes = false;
+            }
           })
           .catch((err) => {
             this.router.navigate(['/**']); // Is this the correct way?
