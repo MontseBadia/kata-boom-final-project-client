@@ -41,8 +41,8 @@
   </form>
 
   <h3>Tests:</h3>
-  <div *ngFor="let test of randomKata.tests">
-    <div>{{randomKata.functionName}}
+  <div *ngFor="let test of randomKata.tests, let i = index">
+    <div>{{i+1}}. {{randomKata.functionName}}
       <span *ngIf="oneParameter">
         <span *ngFor="let param of test.params; let last = last; let first = first">
           <span *ngIf="!last; first">({{param}}, </span>
@@ -63,13 +63,14 @@
           <span *ngIf="last">{{param}})</span>
         </span>
       </span>
+      <p> ---> expected result: {{test.result}}</p>
     </div>
   </div>
 
   <div *ngIf="randomKataResults">
-    <h3>Results: </h3>
-    <div *ngFor="let result of randomKataResults">
-      <span>-----> {{result}}</span>
+    <h3>Your Results: </h3>
+    <div *ngFor="let result of randomKataResults; let i = index">
+      <span>{{i+1}}. ---> {{result}} ---> {{finalStatus[i]}}</span>
     </div>
   </div>
 

@@ -15,7 +15,7 @@ import { KataService } from '../../services/kata.service';
 
 export class KataPageComponent implements OnInit {
 
-  randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any }] };
+  randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any, result: any }] };
   // DO NOT FORGET TO DECLARE AS [ ] --> MEMORY CRASHES!!
   oneParameter: boolean;
   testAndSubmit = false;
@@ -25,6 +25,7 @@ export class KataPageComponent implements OnInit {
   passedTests: boolean;
   emptyEditor: boolean;
   randomKataResults: [any];
+  finalStatus: [any];
 
   // --- CODE EDITOR VARIABLES
   text: any;
@@ -50,6 +51,11 @@ export class KataPageComponent implements OnInit {
             } else {
               this.oneParameter = false;
             }
+            if (typeof (this.randomKata.tests[0].result) === 'string') {
+              for (let x = 0; x < this.randomKata.tests.length; x++) {
+                this.randomKata.tests[x].result = '"' + this.randomKata.tests[x].result + '"';
+              }
+            }
           })
           .catch((err) => {
             this.router.navigate(['/**']); // Is this the correct way?
@@ -74,6 +80,7 @@ export class KataPageComponent implements OnInit {
         this.kataService.checkKata(this.inputCode, this.randomKataId)
           .then((data) => {
             this.randomKataResults = data.evaluation;
+            this.finalStatus = data.finalStatus;
             if (typeof (this.randomKataResults[0]) === 'string') {
               for (let x = 0; x < this.randomKataResults.length; x++) {
                 this.randomKataResults[x] = '"' + this.randomKataResults[x] + '"';
@@ -83,7 +90,6 @@ export class KataPageComponent implements OnInit {
               this.passedTests = true;
             }
             this.testAndSubmit = false;
-            // stays in the same page
           })
           .catch((err) => {
             this.error = err.error;
