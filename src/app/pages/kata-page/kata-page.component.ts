@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+// --- IMPORTS FOR THE CODE EDITOR
 import 'brace';
 import 'brace/theme/twilight';
 import 'brace/mode/javascript';
 
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { KataService } from '../../services/kata.service';
 
 @Component({
@@ -27,7 +28,7 @@ export class KataPageComponent implements OnInit {
   passedTests: boolean;
   emptyEditor: boolean;
 
-  constructor(private route: ActivatedRoute, private kataService: KataService) { }
+  constructor(private route: ActivatedRoute, private kataService: KataService, private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -35,15 +36,16 @@ export class KataPageComponent implements OnInit {
         this.kataService.getOne(kataName)
           .then((kata) => {
             this.randomKata = kata;
-            // --- REPLACE DASHES OF FUNCTION NAME
-            this.randomKata.name = this.randomKata.name.replace(/-/g, ' ');
+            this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
+          })
+          .catch((err) => {
+            this.router.navigate(['/**']); // Is this the correct way?
           });
       });
   }
 
-  // --- SAVES INPUT CODE
   onChange(inputCode) {
-    this.inputCode = inputCode;
+    this.inputCode = inputCode;  // --- SAVES INPUT CODE
   }
 
   handleSubmit(form, randomKataId) {

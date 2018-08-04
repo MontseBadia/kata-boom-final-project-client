@@ -25,7 +25,7 @@ export class ProfilePageComponent implements OnInit {
         this.router.navigate([`/kata/${this.kataName}`]);
       })
       .catch((err) => {
-        // do something
+        this.router.navigate(['/**']);
       });
   }
 }

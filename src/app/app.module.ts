@@ -16,6 +16,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { KataPageComponent } from './pages/kata-page/kata-page.component';
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 // ----- SERVICES ------
 import { AuthService } from './services/auth.service';
@@ -32,6 +33,9 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
   { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
+  { path: '**', component: NotFoundPageComponent },
+  // { path: 'kata/**', component: NotFoundPageComponent } Does this need a guard?
+
 ];
 
 @NgModule({
@@ -42,6 +46,7 @@ const routes: Routes = [
     SignupPageComponent,
     ProfilePageComponent,
     KataPageComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
