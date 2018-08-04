@@ -68,12 +68,17 @@ export class KataPageComponent implements OnInit {
 
     if (form.valid) {
       this.randomKataId = randomKataId; // Do I need this?
+      this.feedbackEnabled = true;
 
       if (this.testAndSubmit === false) { // ---- So that it does the check and not the submit
         this.kataService.checkKata(this.inputCode, this.randomKataId)
           .then((data) => {
             this.randomKataResults = data.evaluation;
-            this.feedbackEnabled = true;
+            if (typeof (this.randomKataResults[0]) === 'string') {
+              for (let x = 0; x < this.randomKataResults.length; x++) {
+                this.randomKataResults[x] = '"' + this.randomKataResults[x] + '"';
+              }
+            }
             if (data.isCorrect) {
               this.passedTests = true;
             }
@@ -81,7 +86,6 @@ export class KataPageComponent implements OnInit {
             // stays in the same page
           })
           .catch((err) => {
-            this.feedbackEnabled = true;
             this.error = err.error;
             if (this.inputCode !== '') {
               this.emptyEditor = false;
