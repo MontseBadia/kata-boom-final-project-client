@@ -43,7 +43,7 @@
   <h3>Tests:</h3>
   <div *ngFor="let test of randomKata.tests">
     <div>{{randomKata.functionName}}
-      <span *ngIf="allowQuotes">
+      <span *ngIf="oneParameter">
         <span *ngFor="let param of test.params; let last = last; let first = first">
           <span *ngIf="!last; first">({{param}}, </span>
           <span *ngIf="last; first">({{param}}) </span>
@@ -54,7 +54,7 @@
         </span>
       </span>
 
-      <span *ngIf="!allowQuotes">
+      <span *ngIf="!oneParameter">
         <span *ngFor="let param of test.params; let last = last, let first = first">
           <span *ngIf="first">({{param}}, </span>
           <span *ngIf="!last">

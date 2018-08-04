@@ -17,7 +17,7 @@ export class KataPageComponent implements OnInit {
 
   randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any }] };
   // DO NOT FORGET TO DECLARE AS [ ] --> MEMORY CRASHES!!
-  allowQuotes: boolean;
+  oneParameter: boolean;
   testAndSubmit = false;
   feedbackEnabled = false;
   error = null;
@@ -45,15 +45,10 @@ export class KataPageComponent implements OnInit {
             this.text = `function ${this.randomKata.functionName} (${this.randomKata.parameters}) {
 
 }`;
-            if (typeof (kata.tests[0].params[0]) === 'string') { // --- Puts params in quotes in case of strings
-              for (let x = 0; x < kata.tests.length; x++) {
-                for (let y = 0; y < kata.tests[x].params.length; y++) {
-                  this.randomKata.tests[x].params[y] = '"' + this.randomKata.tests[x].params[y] + '"';
-                  this.allowQuotes = true;
-                }
-              }
+            if (this.randomKata.tests[0].params.length === 1) {
+              this.oneParameter = true;
             } else {
-              this.allowQuotes = false;
+              this.oneParameter = false;
             }
           })
           .catch((err) => {
