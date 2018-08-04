@@ -6,11 +6,11 @@
   <h4 class="capitalize">Name: {{randomKata.name}}</h4>
   <p>Description: {{randomKata.description}}</p>
   <div *ngFor="let test of randomKata.tests">
-    <p>Tests: {{randomKata.functionName}}(
-      <span *ngFor="let param of test.params">
-        <span>{{param}}</span>
-      </span>
-      )
+    <p>Tests: {{randomKata.functionName}} (
+      <span *ngFor="let param of test.params; let last = last">
+        <span *ngIf="!last">{{param}}, </span>
+        <span *ngIf="last">{{param}}</span>
+      </span> )
     </p>
   </div>
 

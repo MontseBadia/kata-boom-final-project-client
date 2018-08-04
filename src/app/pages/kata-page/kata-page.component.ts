@@ -15,18 +15,18 @@ import { KataService } from '../../services/kata.service';
 
 export class KataPageComponent implements OnInit {
 
-  // --- CODE EDITOR VARIABLES
-  text: any;
-  options: any = { maxLines: 1000, printMargin: false, useWorker: true };
-  inputCode: any = '';
-
-  randomKata: { name: string };
+  randomKata: { name: string, functionName: string, parameters: [string] };
   testAndSubmit = false;
   feedbackEnabled = false;
   error = null;
   randomKataId: any;
   passedTests: boolean;
   emptyEditor: boolean;
+
+  // --- CODE EDITOR VARIABLES
+  text: any;
+  options: any = { maxLines: 1000, printMargin: false, useWorker: true };
+  inputCode: any;
 
   constructor(private route: ActivatedRoute, private kataService: KataService, private router: Router) { }
 
@@ -36,6 +36,11 @@ export class KataPageComponent implements OnInit {
         this.kataService.getOne(kataName)
           .then((kata) => {
             this.randomKata = kata;
+            this.randomKata.functionName = kata.functionName;
+            this.randomKata.parameters = kata.parameters;
+            this.text = `function ${this.randomKata.functionName} (${this.randomKata.parameters}) {
+
+}`;
             this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
           })
           .catch((err) => {
@@ -50,7 +55,6 @@ export class KataPageComponent implements OnInit {
 
   handleSubmit(form, randomKataId) {
     this.error = '';
-    this.feedbackEnabled = true;
     this.passedTests = false;
     this.emptyEditor = true;
 
@@ -60,6 +64,7 @@ export class KataPageComponent implements OnInit {
       if (this.testAndSubmit === false) { // ---- So that it does the check and not the submit
         this.kataService.checkKata(this.inputCode, this.randomKataId)
           .then((isCorrect) => {
+            this.feedbackEnabled = true;
             if (isCorrect) {
               this.passedTests = true;
             }
