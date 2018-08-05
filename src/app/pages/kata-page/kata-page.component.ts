@@ -19,6 +19,8 @@ export class KataPageComponent implements OnInit {
   // DO NOT FORGET TO DECLARE AS [ ] --> MEMORY CRASHES!!
   oneParameter: boolean;
   testAndSubmit = false;
+  ableToSubmit = false;
+  alreadySubmitted = false;
   feedbackEnabled = false;
   error = null;
   randomKataId: any;
@@ -71,46 +73,47 @@ export class KataPageComponent implements OnInit {
     this.error = '';
     this.passedTests = false;
     this.emptyEditor = true;
+    this.ableToSubmit = false;
+    this.alreadySubmitted = false;
 
     if (form.valid) {
       this.randomKataId = randomKataId; // Do I need this?
       this.feedbackEnabled = true;
       this.randomKataResults = undefined;
 
-      if (this.testAndSubmit === false) { // ---- So that it does the check and not the submit
-        this.kataService.checkKata(this.inputCode, this.randomKataId)
-          .then((data) => {
-            this.randomKataResults = data.evaluation;
-            this.finalStatus = data.finalStatus;
-            for (let x = 0; x < this.randomKataResults.length; x++) {
-              if (typeof (this.randomKataResults[x]) === 'string') {
-                this.randomKataResults[x] = '"' + this.randomKataResults[x] + '"';
-              }
+      this.kataService.checkKata(this.inputCode, this.randomKataId)
+        .then((data) => {
+          this.randomKataResults = data.evaluation;
+          this.finalStatus = data.finalStatus;
+          for (let x = 0; x < this.randomKataResults.length; x++) {
+            if (typeof (this.randomKataResults[x]) === 'string') {
+              this.randomKataResults[x] = '"' + this.randomKataResults[x] + '"';
             }
-            if (data.isCorrect) {
-              this.passedTests = true;
+          }
+          if (data.isCorrect) {
+            this.passedTests = true;
+            this.ableToSubmit = true;
+            if (this.testAndSubmit === true) {
+              this.kataService.submitKata(this.inputCode, this.randomKataId)
+                .then(() => {
+                  this.alreadySubmitted = true;
+                  this.ableToSubmit = false;
+                });
             }
-            this.testAndSubmit = false;
-          })
-          .catch((err) => {
-            this.error = err.error;
-            if (this.inputCode !== '') {
-              this.emptyEditor = false;
-            }
-          });
+          }
+        })
 
-      } else {
-        this.kataService.submitKata(this.inputCode, this.randomKataId)
-          .then((result) => {
-            this.testAndSubmit = false;
-            // stays in the same page
-          })
-          .catch((err) => {
-            this.error = err.error;
-            // this.feedbackEnabled = false;
-          });
-      }
+        .catch((err) => {
+          this.testAndSubmit = false;
+          this.passedTests = false;
+          this.ableToSubmit = false;
+          this.error = err.error;
+          if (this.inputCode !== '') {
+            this.emptyEditor = false;
+          }
+        });
     }
   }
+}
 
 }

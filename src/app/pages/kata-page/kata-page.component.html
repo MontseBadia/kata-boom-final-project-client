@@ -9,8 +9,8 @@
     <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
       [durationBeforeCallback]="1000" (textChanged)="onChange($event)" style="min-height: 200px; width:100%; overflow: auto;"></div>
     <div class="field submit">
-      <button type="submit">Test</button>
-      <button type="submit" (click)="testAndSubmit=true">Submit</button>
+      <button type="submit" [disabled]="testAndSubmit">Test</button>
+      <button type="submit" (click)="testAndSubmit=true" [disabled]="(!ableToSubmit) || (alreadySubmitted)">Submit</button>
 
       <div *ngIf="!passedTests && feedbackEnabled">
         <div *ngIf="error">
@@ -33,8 +33,14 @@
       </div>
 
       <div *ngIf="passedTests && feedbackEnabled">
-        <p class="validation">CONGRATS!! You have passed the tests</p>
-        <p style="white-space: pre-wrap">{{inputCode}}</p>
+        <div *ngIf="!testAndSubmit">
+          <p class="validation">CONGRATS!! You have passed the tests</p>
+          <p style="white-space: pre-wrap">{{inputCode}}</p>
+        </div>
+        <div *ngIf="testAndSubmit">
+          <p class="validation">CONGRATS!! Kata submitted successfully!</p>
+          <p style="white-space: pre-wrap">{{inputCode}}</p>
+        </div>
       </div>
 
     </div>
