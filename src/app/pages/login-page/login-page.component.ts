@@ -27,9 +27,8 @@ export class LoginPageComponent implements OnInit {
     if (form.valid) {
       this.processing = true;
       this.authService.login(this.username, this.password)
-        .then((result) => {
+        .then(() => {
           this.router.navigate(['/profile']);
-          // ... maybe turn this to false if your're staying on the page - this.processing = false;
         })
         .catch((err) => {
           this.error = err.error;

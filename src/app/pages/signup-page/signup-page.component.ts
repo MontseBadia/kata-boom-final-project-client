@@ -28,8 +28,7 @@ export class SignupPageComponent implements OnInit {
     if (form.valid) {
       this.processing = true;
       this.authService.signup(this.username, this.password)
-        .then((result) => {
-          // ... handle result, reset form, etc...
+        .then(() => {
           this.router.navigate(['/profile']);
         })
         .catch((err) => {
