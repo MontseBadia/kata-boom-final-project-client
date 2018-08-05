@@ -17,12 +17,12 @@
           <div [ngSwitch]="error.code" class="validation">
             <div *ngIf="emptyEditor">
               <!-- Needed when only function is written -->
-              <p *ngSwitchCase="'no-input-provided'">Please type some input! Test could not be submitted</p>
+              <p *ngSwitchCase="'no-input-provided'">Please type some input! The result could not be submitted</p>
               <p *ngSwitchDefault>An unexpected error occured, please try again</p>
             </div>
             <div *ngIf="!emptyEditor">
-              <p *ngSwitchCase="'no-input-provided'">Please type some input! Test could not be submitted</p>
-              <p *ngSwitchCase="'unexpected-identifier'">Unexpected identifier! Test could not be submitted</p>
+              <p *ngSwitchCase="'no-input-provided'">Please type some input! The result could not be submitted</p>
+              <p *ngSwitchCase="'unexpected-identifier'">Unexpected identifier! The result could not be submitted</p>
               <p *ngSwitchDefault>An unexpected error occured, please try again</p>
             </div>
           </div>
