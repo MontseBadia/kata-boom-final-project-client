@@ -115,5 +115,3 @@ export class KataPageComponent implements OnInit {
     }
   }
 }
-
-}

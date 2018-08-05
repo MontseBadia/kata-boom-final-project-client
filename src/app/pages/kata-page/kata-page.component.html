@@ -46,6 +46,10 @@
     </div>
   </form>
 
+  <div *ngIf="!ableToSubmit && alreadySubmitted">
+    <a [routerLink]='["/profile"]'>Back To Profile</a>
+  </div>
+
   <h3>Tests:</h3>
   <div *ngFor="let test of randomKata.tests, let i = index">
     <div>{{i+1}}. {{randomKata.functionName}}

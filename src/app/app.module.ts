@@ -1,14 +1,17 @@
-// ----- MODULES ------
+// ----- ANGULAR MODULES ------
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 
+// ----- EXTERNAL MODULES ------
 import { AceEditorModule } from 'ng2-ace-editor';
 
 // ----- COMPONENTS ------
 import { AppComponent } from './app.component';
+import { ListComponent } from './components/list/list.component';
+import { KataCardComponent } from './components/kata-card/kata-card.component';
 
 // ----- PAGES ------
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -20,6 +23,7 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 
 // ----- SERVICES ------
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 // ----- GUARDS ------
 import { RequireAnonGuard } from './guards/require-anon.guard';
@@ -35,7 +39,6 @@ const routes: Routes = [
   { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
   { path: '**', component: NotFoundPageComponent },
   // { path: 'kata/**', component: NotFoundPageComponent } Does this need a guard?
-
 ];
 
 @NgModule({
@@ -47,6 +50,8 @@ const routes: Routes = [
     ProfilePageComponent,
     KataPageComponent,
     NotFoundPageComponent,
+    ListComponent,
+    KataCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ const routes: Routes = [
   ],
   providers: [
     AuthService,
+    UserService,
     RequireAnonGuard,
     RequireUserGuard,
     InitAuthGuard
