@@ -5,7 +5,7 @@
 
 ## Description
 
-Platform in which users can solve easy-level katas and send them as a challenge to his/her friends.
+Platform that allows users to practice ease-level javascript katas and send them as a challenge to friends.
 
 
 ## User Stories
@@ -72,16 +72,20 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 ## Services
 
 - Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.logout()
-  - auth.getMe()
+  - login(username, password)
+  - signup(username, password)
+  - logout()
+  - me()
+  - getUser()
 
 - Kata Service
-  - kata.getRandom()
+  - getRandom()
   - getOne(name)
-  - kata.check(id, solution)
-  - kata.submit(id, solution)  
+  - checkKata(id, solution)
+
+- User Service
+  - getMyKatas()
+  - submitKata(id, solution)
 
 ## Pages
 
@@ -95,15 +99,10 @@ Platform in which users can solve easy-level katas and send them as a challenge 
 
 ## Components
 
-- Navbar component
-  - I
-  - O
+- List Component
+  - Input: katas
 - Kata Card component
-  - I: kata details
-  - O
-- Login/Signup form components
-  - I
-  - O: submit form
+  - I: kata
 
 ## Guards
 
@@ -131,6 +130,7 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   ```
   name: { type: string / required },
   functionName: { type: string / required },
+  parameters: { type: [ string ] / required },
   description: { type: string / required },
   tests: [ { params: [ mixed ], result: { type: mixed / required } } ]
   ```
@@ -141,21 +141,25 @@ Platform in which users can solve easy-level katas and send them as a challenge 
   - user only (404)
 - POST /auth/signup
   - anon only (401)
+  - body (username, password)
 - POST /auth/login
-  - anon only (401)
+  - anon only (401)  
+  - body (username, password)
 - POST /auth/logout
   - user only (404)
 
-- GET /profile
-  - user only (401)
 - GET /kata/random
-  - user only (401)
+  - user only (404)
 - GET /kata/:name
-  - user only (401)
-  - body (kata)
+  - user only (404)
+  - params (name)
 - POST /kata/:id/check 
-  - user only (401)
+  - user only (404)
+  - params (id)
   - body (solution)
+
+- GET /user/me/katas 
+  - user only (404)
 - POST /user/me/katas 
-  - user only (401)
-  - body (kataId, solution)
+  - user only (404)
+  - body (id, solution)
