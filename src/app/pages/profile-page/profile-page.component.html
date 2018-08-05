@@ -1,5 +1,5 @@
-<p>
-  profile-page works!
-</p>
+<h3>It's time to train!</h3>
+<button (click)=getRandomKata()>Get random kata</button>
 
-<a (click)=getRandomKata()>Get random kata</a>
+<h3>Katas you have done:</h3>
+<app-list [katas]="katas"></app-list>
