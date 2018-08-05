@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
+
 // --- IMPORTS FOR THE CODE EDITOR
 import 'brace';
 import 'brace/theme/twilight';
 import 'brace/mode/javascript';
 
-import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { KataService } from '../../services/kata.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-kata-page',
@@ -34,7 +36,7 @@ export class KataPageComponent implements OnInit {
   options: any = { maxLines: 1000, printMargin: false, useWorker: true };
   inputCode: any;
 
-  constructor(private route: ActivatedRoute, private kataService: KataService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private kataService: KataService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -94,7 +96,7 @@ export class KataPageComponent implements OnInit {
             this.passedTests = true;
             this.ableToSubmit = true;
             if (this.testAndSubmit === true) {
-              this.kataService.submitKata(this.inputCode, this.randomKataId)
+              this.userService.submitKata(this.inputCode, this.randomKataId)
                 .then(() => {
                   this.alreadySubmitted = true;
                   this.ableToSubmit = false;

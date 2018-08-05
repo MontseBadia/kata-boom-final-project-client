@@ -18,4 +18,17 @@ export class UserService {
     return this.httpClient.get(`${this.baseUserUrl}/katas`, options)
       .toPromise();
   }
+
+  submitKata(inputCode, kataId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {
+      inputCode,
+      kataId
+    };
+    return this.httpClient.post(`${this.baseUserUrl}/katas`, data, options)
+      .toPromise();
+  }
+
 }
