@@ -17,8 +17,8 @@ import { UserService } from '../../services/user.service';
 
 export class KataPageComponent implements OnInit {
 
+  // DON'T FORGET TO DECLARE ARRAY AS [ ] --> MEMORY CRASHES!!
   randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any, result: any }] };
-  // DO NOT FORGET TO DECLARE AS [ ] --> MEMORY CRASHES!!
   oneParameter: boolean;
   testAndSubmit = false;
   ableToSubmit = false;
@@ -30,6 +30,7 @@ export class KataPageComponent implements OnInit {
   emptyEditor: boolean;
   randomKataResults: [any];
   finalStatus: [any];
+  noKatas: string;
 
   // --- CODE EDITOR VARIABLES
   text: any;
@@ -41,29 +42,33 @@ export class KataPageComponent implements OnInit {
   ngOnInit() {
     this.route.params
       .subscribe((kataName) => {
-        this.kataService.getOne(kataName)
-          .then((kata) => {
-            this.randomKata = kata;
-            this.randomKata.functionName = kata.functionName;
-            this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
-            this.randomKata.parameters = kata.parameters;
-            this.text = `function ${this.randomKata.functionName} (${this.randomKata.parameters}) {
+        if (kataName.name === 'no-more-katas') { // --- IF USER HAS DONE ALL AVAILABLE KATAS
+          this.noKatas = 'Sorry! We run out of katas for today';
+        } else {
+          this.kataService.getOne(kataName)
+            .then((kata) => {
+              this.randomKata = kata;
+              this.randomKata.functionName = kata.functionName;
+              this.randomKata.name = this.randomKata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
+              this.randomKata.parameters = kata.parameters;
+              this.text = `function ${this.randomKata.functionName} (${this.randomKata.parameters}) {
 
 }`;
-            if (this.randomKata.tests[0].params.length === 1) {
-              this.oneParameter = true;
-            } else {
-              this.oneParameter = false;
-            }
-            if (typeof (this.randomKata.tests[0].result) === 'string') {
-              for (let x = 0; x < this.randomKata.tests.length; x++) {
-                this.randomKata.tests[x].result = '"' + this.randomKata.tests[x].result + '"';
+              if (this.randomKata.tests[0].params.length === 1) {
+                this.oneParameter = true;
+              } else {
+                this.oneParameter = false;
               }
-            }
-          })
-          .catch((err) => {
-            this.router.navigate(['/**']); // Is this the correct way?
-          });
+              if (typeof (this.randomKata.tests[0].result) === 'string') {
+                for (let x = 0; x < this.randomKata.tests.length; x++) {
+                  this.randomKata.tests[x].result = '"' + this.randomKata.tests[x].result + '"';
+                }
+              }
+            })
+            .catch((err) => {
+              this.router.navigate(['/**']); // Is this the correct way?
+            });
+        }
       });
   }
 
@@ -104,7 +109,6 @@ export class KataPageComponent implements OnInit {
             }
           }
         })
-
         .catch((err) => {
           this.testAndSubmit = false;
           this.passedTests = false;

@@ -1,4 +1,8 @@
-<div class="loading" *ngIf="!randomKata">...loading...</div>
+<div class="loading" *ngIf="!randomKata && !noKatas">...loading...</div>
+
+<div *ngIf="noKatas">
+  <h2>{{noKatas}}</h2>
+</div>
 
 <div *ngIf="randomKata">
   <h2 class="capitalize">Kata - {{randomKata.name}}</h2>

@@ -28,7 +28,11 @@ export class ProfilePageComponent implements OnInit {
   getRandomKata() {
     this.kataService.getRandom()
       .then((kataName) => {
-        this.router.navigate([`/kata/${kataName}`]);
+        if (!kataName) {
+          this.router.navigate(['/kata/no-more-katas']);
+        } else {
+          this.router.navigate([`/kata/${kataName}`]);
+        }
       })
       .catch((err) => {
         this.router.navigate(['/**']);
