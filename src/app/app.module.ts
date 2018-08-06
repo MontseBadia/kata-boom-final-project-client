@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './components/list/list.component';
 import { KataCardComponent } from './components/kata-card/kata-card.component';
 import { FriendCardComponent } from './components/friend-card/friend-card.component';
+import { AddCommentComponent } from './components/add-comment/add-comment.component';
 
 // ----- PAGES ------
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -60,6 +61,7 @@ const routes: Routes = [
     SearchFriendsComponent,
     FriendCardComponent,
     FriendProfilePageComponent,
+    AddCommentComponent,
   ],
   imports: [
     BrowserModule,
