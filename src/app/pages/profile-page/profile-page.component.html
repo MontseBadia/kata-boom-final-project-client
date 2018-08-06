@@ -25,5 +25,38 @@
     </div>
 </form>
 
-<h3>Katas you have done:</h3>
-<app-list [katas]="katas"></app-list>
+<div>
+    <button (click)="showKatas=!showKatas">
+        <p *ngIf="showKatas">Hide Your Katas</p>
+        <p *ngIf="!showKatas">Show Your Katas</p>
+    </button>
+</div>
+
+
+<div [ngClass]="{'hide': !showKatas}">
+    <h3>Katas you have done:</h3>
+    <div *ngIf="katas">
+        <app-list [katas]="katas"></app-list>
+    </div>
+    <div *ngIf="!katas">
+        <p>You haven't done any Kata yet!</p>
+    </div>
+</div>
+
+<div>
+    <button (click)="showFriends=!showFriends">
+        <p *ngIf="showFriends">Hide Your Friends</p>
+        <p *ngIf="!showFriends">Show Your Friends</p>
+    </button>
+</div>
+
+
+<div [ngClass]="{'hide': !showFriends}">
+    <h3>Your Friends:</h3>
+    <div *ngIf="friends">
+        <app-list [friends]="friends"></app-list>
+    </div>
+    <div *ngIf="!friends">
+        <p>You don't have friends yet!</p>
+    </div>
+</div>

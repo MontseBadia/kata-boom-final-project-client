@@ -16,6 +16,9 @@ export class ProfilePageComponent implements OnInit {
   feedbackEnabled = false;
   error = null;
   processing = false;
+  showKatas = false;
+  showFriends = false;
+  friends: any;
 
   constructor(private kataService: KataService, private userService: UserService, private router: Router) { }
 
@@ -23,10 +26,24 @@ export class ProfilePageComponent implements OnInit {
     this.userService.getMyKatas()
       .then((katas) => {
         this.katas = katas.katas;
+        if (this.katas.length === 0) {
+          this.katas = null;
+        }
       })
       .catch((err) => { // Do I need err?
         this.router.navigate(['/**']);
       });
+    this.userService.getMyFriends()
+      .then((friends) => {
+        this.friends = friends.friends;
+        if (this.friends === 0) {
+          this.friends = null;
+        }
+      })
+      .catch((err) => {
+        this.router.navigate(['/**']);
+      });
+
   }
 
   getRandomKata() {
