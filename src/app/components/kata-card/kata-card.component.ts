@@ -13,21 +13,25 @@ import { UserService } from '../../services/user.service';
 export class KataCardComponent implements OnInit {
 
   @Input() kata: any;
+  @Input() userId: any;
+  @Input() myOwnKatas: any;
+
+  showComment = false;
 
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
     this.kata.kata.name = this.kata.kata.name.replace(/-/g, ' '); // --- REPLACE DASHES OF FUNCTION NAME
+    console.log(this.myOwnKatas);
   }
 
-  // getKataSolution(kataId) {
-  //   this.userService.getMyKataSolution(kataId)
-  //     .then(() => {
-  //       this.router.navigate(['/kata/:name/edit']); // does it work?
-  //     })
-  //     .catch((err) => {
-  //       this.router.navigate(['/**']);
-  //     });
-  // }
-
+  handleAddComment($event) {
+    this.userService.addComment($event.comment, $event.userId, $event.kataId)
+      .then((user) => {
+        console.log(user);
+      })
+      .catch(() => {
+        this.router.navigate(['/**']);
+      });
+  }
 }

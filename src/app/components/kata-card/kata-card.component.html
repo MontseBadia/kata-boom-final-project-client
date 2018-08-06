@@ -1,6 +1,17 @@
-<h3 class="capitalize">{{kata.kata.name}}</h3>
-<p>{{kata.kata.description}}</p>
-<h3>Your solution:</h3>
-<pre>{{kata.solution}}</pre>
+<div *ngIf="kata">
+    <h3 class="capitalize">{{kata.kata.name}}</h3>
+    <p>{{kata.kata.description}}</p>
+    <h3>Solution:</h3>
+    <pre>{{kata.solution}}</pre>
+
+    <div *ngIf="!myOwnKatas">
+        <button (click)="showComment=true">Add Comment</button>
+        <div *ngIf="showComment">
+            <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
+        </div>
+    </div>
+
+    <button>See Comments</button>
+</div>
 
 <!-- <button (click)="getKataSolution(kata.kata._id)">Edit Kata</button> -->
