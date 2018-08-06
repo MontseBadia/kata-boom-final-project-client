@@ -4,7 +4,13 @@
   <p>Email will be shown here</p>
 
   <h3>Katas:</h3>
-  <div *ngFor="let item of friend.katas">
-    <app-kata-card [kata]="item"></app-kata-card>
+  <div *ngIf="friend.katas">
+    <div *ngFor="let item of friend.katas">
+      <app-kata-card [kata]="item" [userId]="friend._id"></app-kata-card>
+    </div>
+  </div>
+
+  <div *ngIf="!friend.katas.length">
+    <p>{{friend.username}} hasn't done any Kata yet!</p>
   </div>
 </div>

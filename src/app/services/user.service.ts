@@ -64,4 +64,16 @@ export class UserService {
   //     .toPromise();
   // }
 
+  addComment(comment, userId, kataId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {
+      comment: comment,
+      kataId: kataId
+    };
+    return this.httpClient.post(`${this.baseUserUrl}/add/${userId}/comment`, data, options)
+      .toPromise();
+  }
+
 }
