@@ -22,7 +22,7 @@ export class SignupPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(form) {
+  submitFormSignUp(form) {
     this.error = '';
     this.feedbackEnabled = true;
     if (form.valid) {

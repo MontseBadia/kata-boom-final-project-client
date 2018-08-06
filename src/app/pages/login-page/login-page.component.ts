@@ -21,7 +21,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  submitForm(form) {
+  submitFormLogIn(form) {
     this.error = '';
     this.feedbackEnabled = true;
     if (form.valid) {

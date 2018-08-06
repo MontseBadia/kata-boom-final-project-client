@@ -2,7 +2,7 @@
 
   <h2>Sign Up</h2>
 
-  <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+  <form (ngSubmit)="submitFormSignUp(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
 
     <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
       <label>Username</label>
