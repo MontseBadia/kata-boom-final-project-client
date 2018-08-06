@@ -56,4 +56,12 @@ export class UserService {
       .toPromise();
   }
 
+  // getMyKataSolution(kataId): Promise<any> {
+  //   const options = {
+  //     withCredentials: true
+  //   };
+  //   return this.httpClient.get(`${this.baseUserUrl}/me/katas/${kataId}/edit`, options)
+  //     .toPromise();
+  // }
+
 }

@@ -36,7 +36,7 @@ export class ProfilePageComponent implements OnInit {
     this.userService.getMyFriends()
       .then((friends) => {
         this.friends = friends.friends;
-        if (this.friends === 0) {
+        if (this.friends.length === 0) {
           this.friends = null;
         }
       })
