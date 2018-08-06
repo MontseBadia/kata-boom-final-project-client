@@ -12,6 +12,7 @@ import { AceEditorModule } from 'ng2-ace-editor';
 import { AppComponent } from './app.component';
 import { ListComponent } from './components/list/list.component';
 import { KataCardComponent } from './components/kata-card/kata-card.component';
+import { FriendCardComponent } from './components/friend-card/friend-card.component';
 
 // ----- PAGES ------
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -30,7 +31,6 @@ import { UserService } from './services/user.service';
 import { RequireAnonGuard } from './guards/require-anon.guard';
 import { RequireUserGuard } from './guards/require-user.guard';
 import { InitAuthGuard } from './guards/init-auth.guard';
-import { ListFriendsComponent } from './pages/list-friends/list-friends.component';
 
 // ----- ROUTES ------
 const routes: Routes = [
@@ -55,8 +55,8 @@ const routes: Routes = [
     NotFoundPageComponent,
     ListComponent,
     KataCardComponent,
-    ListFriendsComponent,
     SearchFriendsComponent,
+    FriendCardComponent,
   ],
   imports: [
     BrowserModule,

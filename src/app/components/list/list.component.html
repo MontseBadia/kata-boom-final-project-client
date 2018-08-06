@@ -1,5 +1,11 @@
-<ul>
+<ul *ngIf="katas">
   <li *ngFor="let item of katas">
     <app-kata-card [kata]="item"></app-kata-card>
+  </li>
+</ul>
+
+<ul *ngIf="friends">
+  <li *ngFor="let item of friends">
+    <app-friend-card [friend]="item"></app-friend-card>
   </li>
 </ul>

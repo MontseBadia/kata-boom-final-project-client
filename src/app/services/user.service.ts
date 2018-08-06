@@ -48,4 +48,12 @@ export class UserService {
       .toPromise();
   }
 
+  getMyFriends(): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseUserUrl}/me/friends`, options)
+      .toPromise();
+  }
+
 }
