@@ -11,10 +11,14 @@ export class ListComponent implements OnInit {
 
   @Input() katas: any;
   @Input() friends: any;
+  @Input() myOwnKatas: any;
 
   constructor() { }
 
   ngOnInit() {
+    if (!this.myOwnKatas) {
+      this.myOwnKatas = false;
+    }
   }
 
 }

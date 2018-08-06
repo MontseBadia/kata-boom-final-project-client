@@ -1,6 +1,6 @@
 <ul *ngIf="katas">
   <li *ngFor="let item of katas">
-    <app-kata-card [kata]="item"></app-kata-card>
+    <app-kata-card [kata]="item" [myOwnKatas]="myOwnKatas"></app-kata-card>
   </li>
 </ul>
 

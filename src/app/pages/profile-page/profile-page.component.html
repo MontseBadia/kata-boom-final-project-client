@@ -36,7 +36,7 @@
 <div [ngClass]="{'hide': !showKatas}">
     <h3>Katas you have done:</h3>
     <div *ngIf="katas">
-        <app-list [katas]="katas"></app-list>
+        <app-list [katas]="katas" [myOwnKatas]="myOwnKatas"></app-list>
     </div>
     <div *ngIf="!katas">
         <p>You haven't done any Kata yet!</p>

@@ -19,6 +19,7 @@ export class ProfilePageComponent implements OnInit {
   showKatas = false;
   showFriends = false;
   friends: any;
+  myOwnKatas = true;
 
   constructor(private kataService: KataService, private userService: UserService, private router: Router) { }
 
