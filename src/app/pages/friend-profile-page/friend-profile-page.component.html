@@ -1,3 +1,10 @@
-<p>
-  friend-profile-page works!
-</p>
+<div *ngIf="friend">
+  <p>{{friend.username}}</p>
+  <p>Picture will be shown here</p>
+  <p>Email will be shown here</p>
+
+  <h3>Katas:</h3>
+  <div *ngFor="let item of friend.katas">
+    <app-kata-card [kata]="item"></app-kata-card>
+  </div>
+</div>

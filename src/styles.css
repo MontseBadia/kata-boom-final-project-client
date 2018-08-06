@@ -40,13 +40,13 @@ html {
   #site-header {
     padding: 30px 0;
     color: white;
-    background: rgb(190, 180, 247);
+    background: #75addd;
   }
   
   #site-footer {
     color: white;
     padding: 60px 0;
-    background: rgb(190, 180, 247);
+    background: #75addd;
   }
   
   #site-main {

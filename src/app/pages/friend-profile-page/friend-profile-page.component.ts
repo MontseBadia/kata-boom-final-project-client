@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-friend-profile-page',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FriendProfilePageComponent implements OnInit {
 
-  constructor() { }
+  friend: any;
+
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params
+      .subscribe((params) => {
+        this.userService.getOneByName(params.name)
+          .then((friend) => {
+            this.friend = friend;
+          });
+      });
   }
 
 }
