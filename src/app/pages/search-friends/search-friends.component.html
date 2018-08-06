@@ -1,0 +1,19 @@
+<div *ngIf="user">
+  <h3>{{user.username}}</h3>
+  <p>Picture will be shown here</p>
+  <p>Email will be shown here</p>
+
+  <button (click)="addFriend(user)">Add Friend</button>
+
+  <div *ngIf="error" class="validation">
+    <div [ngSwitch]="error.code">
+      <p *ngSwitchCase="'friend-already-exists'">{{user.username}} is already your friend</p>
+      <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+    </div>
+  </div>
+
+  <div>
+    <a [routerLink]='["/profile"]'>Back To Profile</a>
+  </div>
+
+</div>
