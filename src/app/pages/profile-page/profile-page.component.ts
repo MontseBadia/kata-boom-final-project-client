@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 
 import { KataService } from '../../services/kata.service';
 import { UserService } from '../../services/user.service';
@@ -12,6 +12,10 @@ import { UserService } from '../../services/user.service';
 export class ProfilePageComponent implements OnInit {
 
   katas: any;
+  username: string;
+  feedbackEnabled = false;
+  error = null;
+  processing = false;
 
   constructor(private kataService: KataService, private userService: UserService, private router: Router) { }
 
@@ -38,4 +42,22 @@ export class ProfilePageComponent implements OnInit {
         this.router.navigate(['/**']);
       });
   }
+
+  submitForm(form) {
+    this.error = '';
+    this.feedbackEnabled = true;
+    if (form.valid) {
+      this.processing = true;
+      this.userService.getOneByName(this.username)
+        .then((user) => {
+          this.router.navigate([`/friends/${user.username}`]); // how to include search?name=username?
+        })
+        .catch((err) => {
+          this.error = err.error;
+          this.processing = false;
+          this.feedbackEnabled = false;
+        });
+    }
+  }
+
 }
