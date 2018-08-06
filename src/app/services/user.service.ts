@@ -7,7 +7,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 
 export class UserService {
 
-  baseUserUrl = 'http://localhost:3000/user/me';
+  baseUserUrl = 'http://localhost:3000/user';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class UserService {
     const options = {
       withCredentials: true
     };
-    return this.httpClient.get(`${this.baseUserUrl}/katas`, options)
+    return this.httpClient.get(`${this.baseUserUrl}/me/katas`, options)
       .toPromise();
   }
 
@@ -27,7 +27,24 @@ export class UserService {
       inputCode,
       kataId
     };
-    return this.httpClient.post(`${this.baseUserUrl}/katas`, data, options)
+    return this.httpClient.post(`${this.baseUserUrl}/me/katas`, data, options)
+      .toPromise();
+  }
+
+  getOneByName(userName): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseUserUrl}/search/${userName}`, options)
+      .toPromise();
+  }
+
+  addOneFriend(userId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {};
+    return this.httpClient.post(`${this.baseUserUrl}/add/${userId}`, data, options)
       .toPromise();
   }
 
