@@ -43,7 +43,7 @@ export class ProfilePageComponent implements OnInit {
       });
   }
 
-  submitForm(form) {
+  submitFormSearchFriend(form) {
     this.error = '';
     this.feedbackEnabled = true;
     if (form.valid) {

@@ -2,13 +2,19 @@
 <button (click)=getRandomKata()>Get random kata</button>
 
 <h3>Look for friends:</h3>
-<form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+<form (ngSubmit)="submitFormSearchFriend(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
     <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
         <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required minlength="6" [disabled]="processing"
             placeholder="your friends' username" />
         <div *ngIf="feedbackEnabled && usernameField.errors">
             <p *ngIf="usernameField.errors.required" class="validation">username required</p>
             <p *ngIf="usernameField.errors.minlength" class="validation">username is too short</p>
+        </div>
+        <div *ngIf="error" class="validation">
+            <div [ngSwitch]="error.code">
+                <p *ngSwitchCase="'not-found'">username does not exist</p>
+                <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+            </div>
         </div>
     </div>
     <div class="field submit">
