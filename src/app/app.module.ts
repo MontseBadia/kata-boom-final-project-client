@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { HttpClientModule } from '../../node_modules/@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // ----- EXTERNAL MODULES ------
 import { AceEditorModule } from 'ng2-ace-editor';
@@ -20,6 +20,7 @@ import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { KataPageComponent } from './pages/kata-page/kata-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
+import { SearchFriendsComponent } from './pages/search-friends/search-friends.component';
 
 // ----- SERVICES ------
 import { AuthService } from './services/auth.service';
@@ -29,6 +30,7 @@ import { UserService } from './services/user.service';
 import { RequireAnonGuard } from './guards/require-anon.guard';
 import { RequireUserGuard } from './guards/require-user.guard';
 import { InitAuthGuard } from './guards/init-auth.guard';
+import { ListFriendsComponent } from './pages/list-friends/list-friends.component';
 
 // ----- ROUTES ------
 const routes: Routes = [
@@ -37,6 +39,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
   { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
+  { path: 'friends/:name', component: SearchFriendsComponent, canActivate: [RequireUserGuard] },
   { path: '**', component: NotFoundPageComponent },
   // { path: 'kata/**', component: NotFoundPageComponent } Does this need a guard?
 ];
@@ -52,6 +55,8 @@ const routes: Routes = [
     NotFoundPageComponent,
     ListComponent,
     KataCardComponent,
+    ListFriendsComponent,
+    SearchFriendsComponent,
   ],
   imports: [
     BrowserModule,
