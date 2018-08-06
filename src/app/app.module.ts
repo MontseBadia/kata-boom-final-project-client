@@ -22,6 +22,7 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { KataPageComponent } from './pages/kata-page/kata-page.component';
 import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 import { SearchFriendsComponent } from './pages/search-friends/search-friends.component';
+import { FriendProfilePageComponent } from './pages/friend-profile-page/friend-profile-page.component';
 
 // ----- SERVICES ------
 import { AuthService } from './services/auth.service';
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'login', component: LoginPageComponent, canActivate: [RequireAnonGuard] },
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
+  { path: 'profile/:name', component: FriendProfilePageComponent, canActivate: [RequireUserGuard] },
   { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
   { path: 'friends/:name', component: SearchFriendsComponent, canActivate: [RequireUserGuard] },
   { path: '**', component: NotFoundPageComponent },
@@ -57,6 +59,7 @@ const routes: Routes = [
     KataCardComponent,
     SearchFriendsComponent,
     FriendCardComponent,
+    FriendProfilePageComponent,
   ],
   imports: [
     BrowserModule,
