@@ -18,7 +18,7 @@ export class SearchFriendsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.route.params
+    this.route.queryParams
       .subscribe((params) => {
         this.userService.getOneByName(params.name)
           .then((user) => {

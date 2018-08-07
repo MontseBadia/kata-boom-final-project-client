@@ -87,4 +87,15 @@ export class UserService {
       .toPromise();
   }
 
+  removeComment(commentId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    const data = {
+      commentId: commentId,
+    };
+    return this.httpClient.post(`${this.baseUserUrl}/remove/${commentId}`, data, options)
+      .toPromise();
+  }
+
 }
