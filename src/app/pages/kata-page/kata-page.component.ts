@@ -69,6 +69,7 @@ export class KataPageComponent implements OnInit {
         }
       })
       .catch((err) => {
+        console.log(err);
         this.router.navigate(['/**']); // Is this the correct way?
       });
   }

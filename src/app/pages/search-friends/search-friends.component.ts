@@ -23,6 +23,10 @@ export class SearchFriendsComponent implements OnInit {
         this.userService.getOneByName(params.name)
           .then((user) => {
             this.user = user;
+          })
+          .catch((err) => {
+            console.log(err);
+            this.router.navigate(['/**']); // Should be 500 page instead of 404
           });
       });
   }
@@ -32,7 +36,7 @@ export class SearchFriendsComponent implements OnInit {
     this.feedbackEnabled = true;
     this.userService.addOneFriend(user._id)
       .then(() => {
-        this.router.navigate(['/profile']); // should navigate to my friends
+        this.router.navigate(['/profile']);
       })
       .catch((err) => {
         this.error = err.error;

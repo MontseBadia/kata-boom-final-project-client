@@ -36,9 +36,11 @@ export class ProfilePageComponent implements OnInit {
           this.katas = null;
         }
       })
-      .catch((err) => { // Do I need err?
-        this.router.navigate(['/**']);
+      .catch((err) => {
+        console.log(err);
+        this.router.navigate(['/**']); // Should be 500 page instead of 404
       });
+
     this.userService.getMyFriends()
       .then((friends) => {
         this.friends = friends.friends;
@@ -47,9 +49,9 @@ export class ProfilePageComponent implements OnInit {
         }
       })
       .catch((err) => {
+        console.log(err);
         this.router.navigate(['/**']);
       });
-
   }
 
   getRandomKata() {
@@ -62,6 +64,7 @@ export class ProfilePageComponent implements OnInit {
         }
       })
       .catch((err) => {
+        console.log(err);
         this.router.navigate(['/**']);
       });
   }
