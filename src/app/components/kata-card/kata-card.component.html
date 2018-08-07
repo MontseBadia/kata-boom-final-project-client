@@ -14,6 +14,12 @@
             <div *ngIf="showAddComment">
                 <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
             </div>
+
+            <div *ngIf="error" class="validation">
+                <div [ngSwitch]="error.code">
+                    <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -26,7 +32,14 @@
         <div *ngIf="userKatas">
             <app-comment-card [userKatas]="userKatas"></app-comment-card>
         </div>
+
+        <div *ngIf="error" class="validation">
+            <div [ngSwitch]="error.code">
+                <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+            </div>
+        </div>
     </div>
+
 </div>
 
 

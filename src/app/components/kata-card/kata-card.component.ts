@@ -22,6 +22,7 @@ export class KataCardComponent implements OnInit {
   kataUserId: any;
   userKatas: any;
   friends: any;
+  error = null;
 
   constructor(private userService: UserService, private router: Router) { }
 
@@ -41,7 +42,8 @@ export class KataCardComponent implements OnInit {
           this.userKatas = null;
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        this.error = err.error;
         this.router.navigate(['/**']);
       });
   }
@@ -52,7 +54,8 @@ export class KataCardComponent implements OnInit {
       .then(() => {
         this.ngOnInit();
       })
-      .catch(() => {
+      .catch((err) => {
+        this.error = err.error;
         this.router.navigate(['/**']);
       });
   }
