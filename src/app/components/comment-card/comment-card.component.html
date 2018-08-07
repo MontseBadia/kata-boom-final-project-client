@@ -1,0 +1,10 @@
+<div *ngIf="userKatas">
+  <div *ngFor="let comment of userKatas.comments">
+    <p>{{comment.provider.username}} said:</p>
+    <p>{{comment.text}}</p>
+  </div>
+</div>
+
+<div *ngIf="!userKatas.comments.length">
+  <p>There are no comments for this kata</p>
+</div>

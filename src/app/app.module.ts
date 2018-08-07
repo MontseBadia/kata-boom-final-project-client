@@ -14,6 +14,7 @@ import { ListComponent } from './components/list/list.component';
 import { KataCardComponent } from './components/kata-card/kata-card.component';
 import { FriendCardComponent } from './components/friend-card/friend-card.component';
 import { AddCommentComponent } from './components/add-comment/add-comment.component';
+import { CommentCardComponent } from './components/comment-card/comment-card.component';
 
 // ----- PAGES ------
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -62,6 +63,7 @@ const routes: Routes = [
     FriendCardComponent,
     FriendProfilePageComponent,
     AddCommentComponent,
+    CommentCardComponent,
   ],
   imports: [
     BrowserModule,
