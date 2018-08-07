@@ -76,4 +76,12 @@ export class UserService {
       .toPromise();
   }
 
+  retrieveKataComments(userId, kataId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.get(`${this.baseUserUrl}/${userId}/comments/${kataId}`, options)
+      .toPromise();
+  }
+
 }
