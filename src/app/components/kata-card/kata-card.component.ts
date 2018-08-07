@@ -40,8 +40,6 @@ export class KataCardComponent implements OnInit {
         if (this.userKatas.length === 0) {
           this.userKatas = null;
         }
-
-        console.log(this.userKatas);
       })
       .catch(() => {
         this.router.navigate(['/**']);
