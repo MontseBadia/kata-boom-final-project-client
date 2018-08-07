@@ -22,25 +22,45 @@ export class ProfilePageComponent implements OnInit {
   friends: any;
   myOwnKatas = true;
   myId: any;
+  randomKataError = false;
+  myKatasError = false;
+  myFriendsError = false;
 
   constructor(private kataService: KataService,
     private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.myId = this.authService.getUser()._id;
+  }
 
+  toggleMyKatas() {
+    if (!this.showKatas && !this.katas) {
+      this.loadKatas();
+    }
+    this.showKatas = !this.showKatas;
+  }
+
+  toggleMyFriends() {
+    if (!this.showFriends && !this.katas) {
+      this.loadFriends();
+    }
+    this.showFriends = !this.showFriends;
+  }
+
+  loadKatas() {
+    this.myKatasError = false;
     this.userService.getMyKatas()
       .then((katas) => {
         this.katas = katas.katas;
-        if (this.katas.length === 0) {
-          this.katas = null;
-        }
       })
       .catch((err) => {
         console.log(err);
-        this.router.navigate(['/**']); // Should be 500 page instead of 404
+        this.myKatasError = true;
       });
+  }
 
+  loadFriends() {
+    this.myFriendsError = false;
     this.userService.getMyFriends()
       .then((friends) => {
         this.friends = friends.friends;
@@ -50,7 +70,8 @@ export class ProfilePageComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-        this.router.navigate(['/**']);
+        this.myFriendsError = true;
+        // this.router.navigate(['/**']);
       });
   }
 
@@ -65,7 +86,7 @@ export class ProfilePageComponent implements OnInit {
       })
       .catch((err) => {
         console.log(err);
-        this.router.navigate(['/**']);
+        this.randomKataError = true;
       });
   }
 
@@ -76,7 +97,7 @@ export class ProfilePageComponent implements OnInit {
       this.processing = true;
       this.userService.getOneByName(this.username)
         .then((user) => {
-          this.router.navigate([`/friends/${user.username}`]); // how to include search?name=username?
+          this.router.navigate(['friends'], { queryParams: { name: user.username } });
         })
         .catch((err) => {
           this.error = err.error;

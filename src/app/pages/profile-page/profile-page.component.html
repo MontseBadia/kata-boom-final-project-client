@@ -1,5 +1,6 @@
 <h3>It's time to train!</h3>
 <button (click)=getRandomKata()>Get random kata</button>
+<div class="error" *ngIf="randomKataError">Sorry, we could not load the katas. Please try again.</div>
 
 <h3>Look for friends:</h3>
 <form (ngSubmit)="submitFormSearchFriend(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
@@ -26,7 +27,7 @@
 </form>
 
 <div>
-    <button (click)="showKatas=!showKatas">
+    <button (click)="toggleMyKatas()">
         <p *ngIf="showKatas">Hide Your Katas</p>
         <p *ngIf="!showKatas">Show Your Katas</p>
     </button>
@@ -39,12 +40,17 @@
         <app-list [katas]="katas" [myOwnKatas]="myOwnKatas" [myId]="myId"></app-list>
     </div>
     <div *ngIf="!katas">
-        <p>You haven't done any Kata yet!</p>
+        <div *ngIf="!myKatasError">
+            <p>You haven't done any Kata yet!</p>
+        </div>
+        <div *ngIf="myKatasError">
+            <p>Sorry, there was an error. Please try again.</p>
+        </div>
     </div>
 </div>
 
 <div>
-    <button (click)="showFriends=!showFriends">
+    <button (click)="toggleMyFriends()">
         <p *ngIf="showFriends">Hide Your Friends</p>
         <p *ngIf="!showFriends">Show Your Friends</p>
     </button>
@@ -57,6 +63,11 @@
         <app-list [friends]="friends"></app-list>
     </div>
     <div *ngIf="!friends">
-        <p>You don't have friends yet!</p>
+        <div *ngIf="!myFriendsError">
+            <p>You don't have friends yet!</p>
+        </div>
+        <div *ngIf="myFriendsError">
+            <p>Sorry, there was an error. Please try again.</p>
+        </div>
     </div>
 </div>
