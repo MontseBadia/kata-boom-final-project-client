@@ -5,13 +5,26 @@
     <pre>{{kata.solution}}</pre>
 
     <div *ngIf="!myOwnKatas">
-        <button (click)="showComment=true">Add Comment</button>
-        <div *ngIf="showComment">
+        <button (click)="showAddComment=true">Add Comment</button>
+        <div *ngIf="showAddComment">
             <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
         </div>
     </div>
 
-    <button>See Comments</button>
+    <button (click)="showComment=!showComment">
+        <p *ngIf="showComment">Hide Comments</p>
+        <p *ngIf="!showComment">Show Comments</p>
+    </button>
+
+    <div [ngClass]="{'hide': !showComment}">
+        <div *ngIf="userKatas">
+            <app-comment-card [userKatas]="userKatas"></app-comment-card>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="friends">
+    <app-list [friends]="friends"></app-list>
 </div>
 
 <!-- <button (click)="getKataSolution(kata.kata._id)">Edit Kata</button> -->
