@@ -47,8 +47,10 @@ export class KataCardComponent implements OnInit {
   }
 
   handleAddComment($event) {
+    this.showAddComment = false;
     this.userService.addComment($event.comment, $event.userId, $event.kataId)
       .then(() => {
+        this.ngOnInit();
       })
       .catch(() => {
         this.router.navigate(['/**']);

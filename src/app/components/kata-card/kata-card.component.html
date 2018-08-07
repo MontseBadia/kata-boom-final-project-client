@@ -5,9 +5,15 @@
     <pre>{{kata.solution}}</pre>
 
     <div *ngIf="!myOwnKatas">
-        <button (click)="showAddComment=true">Add Comment</button>
-        <div *ngIf="showAddComment">
-            <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
+        <button (click)="showAddComment=!showAddComment">
+            <p *ngIf="!showAddComment">Add Comment</p>
+            <p *ngIf="showAddComment">Hide Add Comment</p>
+        </button>
+
+        <div [ngClass]="{'hide': !showAddComment}">
+            <div *ngIf="showAddComment">
+                <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
+            </div>
         </div>
     </div>
 
@@ -22,6 +28,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- <div *ngIf="friends">
     <app-list [friends]="friends"></app-list>
