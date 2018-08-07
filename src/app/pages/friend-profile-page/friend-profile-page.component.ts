@@ -11,6 +11,7 @@ import { UserService } from '../../services/user.service';
 export class FriendProfilePageComponent implements OnInit {
 
   friend: any;
+  error = null;
 
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
@@ -20,6 +21,9 @@ export class FriendProfilePageComponent implements OnInit {
         this.userService.getOneByName(params.name)
           .then((friend) => {
             this.friend = friend;
+          })
+          .catch((err) => {
+            this.error = err.error;
           });
       });
   }

@@ -14,3 +14,9 @@
     <p>{{friend.username}} hasn't done any Kata yet!</p>
   </div>
 </div>
+
+<div *ngIf="!friend && error" class="validation">
+  <div [ngSwitch]="error.code">
+    <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+  </div>
+</div>

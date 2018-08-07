@@ -32,14 +32,13 @@
         <div *ngIf="userKatas">
             <app-comment-card [userKatas]="userKatas"></app-comment-card>
         </div>
-
-        <div *ngIf="error" class="validation">
-            <div [ngSwitch]="error.code">
-                <p *ngSwitchDefault>an unexpected error occured, please try again</p>
-            </div>
-        </div>
     </div>
+</div>
 
+<div *ngIf="!kata && error" class="validation">
+    <div [ngSwitch]="error.code">
+        <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+    </div>
 </div>
 
 
