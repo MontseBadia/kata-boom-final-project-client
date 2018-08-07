@@ -59,4 +59,15 @@ export class KataCardComponent implements OnInit {
         this.router.navigate(['/**']);
       });
   }
+
+  handleRemoveComment($event) {
+    this.userService.removeComment($event.commentId)
+      .then(() => {
+        this.ngOnInit();
+      })
+      .catch((err) => {
+        this.error = err.error; // Is this ok??
+        this.router.navigate(['/**']);
+      });
+  }
 }

@@ -30,7 +30,7 @@
 
     <div [ngClass]="{'hide': !showComment}">
         <div *ngIf="userKatas">
-            <app-comment-card [userKatas]="userKatas"></app-comment-card>
+            <app-comment-card [userKatas]="userKatas" [myOwnKatas]="myOwnKatas" (removeComment)="handleRemoveComment($event)"></app-comment-card>
         </div>
     </div>
 </div>

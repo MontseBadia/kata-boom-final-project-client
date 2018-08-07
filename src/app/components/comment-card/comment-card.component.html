@@ -2,6 +2,9 @@
   <div *ngFor="let comment of userKatas.comments">
     <p>{{comment.provider.username}} said:</p>
     <p>{{comment.text}}</p>
+    <div *ngIf="myOwnKatas">
+      <button (click)="handleRemoveOneComment(comment._id)">Remove Comment</button>
+    </div>
   </div>
 </div>
 

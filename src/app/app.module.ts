@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfilePageComponent, canActivate: [RequireUserGuard] },
   { path: 'profile/:name', component: FriendProfilePageComponent, canActivate: [RequireUserGuard] },
   { path: 'kata/:name', component: KataPageComponent, canActivate: [RequireUserGuard] },
-  { path: 'friends/:name', component: SearchFriendsComponent, canActivate: [RequireUserGuard] },
+  { path: 'friends', component: SearchFriendsComponent, canActivate: [RequireUserGuard] },
   { path: '**', component: NotFoundPageComponent },
   // { path: 'kata/**', component: NotFoundPageComponent } Does this need a guard?
 ];
