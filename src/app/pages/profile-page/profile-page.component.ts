@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { KataService } from '../../services/kata.service';
 import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -20,10 +21,14 @@ export class ProfilePageComponent implements OnInit {
   showFriends = false;
   friends: any;
   myOwnKatas = true;
+  myId: any;
 
-  constructor(private kataService: KataService, private userService: UserService, private router: Router) { }
+  constructor(private kataService: KataService,
+    private userService: UserService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.myId = this.authService.getUser()._id;
+
     this.userService.getMyKatas()
       .then((katas) => {
         this.katas = katas.katas;
