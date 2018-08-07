@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class KataService {
 
-  baseKataUrl = 'http://localhost:3000/kata';
+  // baseKataUrl = 'http://localhost:3000/kata';
+  private baseKataUrl = environment.apiUrl + '/kata';
 
   constructor(private httpClient: HttpClient) { }
 

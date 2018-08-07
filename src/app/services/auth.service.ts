@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 // import 'rxjs/add/operator/toPromise';
@@ -11,7 +13,8 @@ import { Subject } from 'rxjs';
 
 export class AuthService {
 
-  private baseUrl = 'http://localhost:3000/auth';
+  // private baseUrl = 'http://localhost:3000/auth';
+  private baseUrl = environment.apiUrl + '/auth';
 
   private user: any;
   private userChange: Subject<any> = new Subject();

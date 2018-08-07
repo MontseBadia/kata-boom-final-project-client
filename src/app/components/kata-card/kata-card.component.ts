@@ -21,6 +21,7 @@ export class KataCardComponent implements OnInit {
   showComment = false;
   kataUserId: any;
   userKatas: any;
+  friends: any;
 
   constructor(private userService: UserService, private router: Router) { }
 
