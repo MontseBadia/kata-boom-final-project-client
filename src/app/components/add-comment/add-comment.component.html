@@ -1,11 +1,12 @@
-<form (ngSubmit)="submitFormAddComment(form)" #form="ngForm" novalidate>
+<div id="add-comment-card">
+  <form (ngSubmit)="submitFormAddComment(form)" #form="ngForm" novalidate>
 
-  <div class="field">
-    <label>Comment</label>
-    <input type="text" name="comment" [(ngModel)]="comment" #commentField="ngModel" required/>
-  </div>
+    <div class="textarea-container">
+      <textarea type="text" name="comment" [(ngModel)]="comment" #commentField="ngModel" required rows="6" cols="60"></textarea>
+      <div>
+        <button type="submit">SAVE</button>
+      </div>
+    </div>
 
-  <div class="field submit">
-    <button type="submit">SAVE</button>
-  </div>
-</form>
+  </form>
+</div>
