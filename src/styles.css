@@ -141,6 +141,7 @@ html {
     margin-bottom: 60px;
   }
 
+  
 
 
 
@@ -159,10 +160,7 @@ html {
   
 
   
-  .section {
-    margin-bottom: 20px;
-    padding-top: 20px;
-  }
+
   
   @media (min-width: 768px) {
     .container {
@@ -508,6 +506,69 @@ form .field.has-error input {
 }
 
 
+/* pages: login page */
+
+#login-page {
+  margin-bottom: 20px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#login-page .login-container {
+  background-color: rgb(35,36,37);
+  margin-top: 100px;
+  height: 70vh;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#login-page .login-container h2 {
+  margin: 0;
+  font-size: 24px;
+  color: silver;
+}
+
+#login-page .login-container img {
+  margin-top: 20px;
+}
+
+#login-page .login-container label {
+  color: silver;
+  font-size: 15px;
+  text-align: center;
+}
+
+#login-page .login-container .img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 140px;
+}
+
+#login-page .login-container .bottom-login {
+  text-align: center;
+  font-size: 13px;
+  color: rgb(135, 132, 132);
+}
+
+#login-page .login-container .bottom-login p {
+  margin: 0;
+}
+
+#login-page .login-container .btn-login {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+
+
+
 
 
 
@@ -686,6 +747,25 @@ p.success-box-kata {
   background-color: #b88c08;
 }
 
+#login-page .login-container button {
+  background-color: #628ed6;
+  color: #131414;
+  border: 0;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 9px 20px 7px;
+  border-radius: 4px;
+  border: 1px solid#628ed6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#profile-page .search-friends button:hover {
+  background-color: #486fae;
+}
 
 
 

@@ -1,43 +1,53 @@
-<div class="section">
+<div id="login-page">
 
-  <h2>Log In</h2>
 
-  <form (ngSubmit)="submitFormLogIn(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
-
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
-      <label>Username</label>
-      <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required [disabled]="processing" />
-      <div *ngIf="feedbackEnabled && usernameField.errors">
-        <p *ngIf="usernameField.errors.required" class="validation">username required</p>
-      </div>
+  <div class="login-container">
+    <div class="img-container">
+      <img src="https://openclipart.org/image/2400px/svg_to_png/183653/cherrybomb.png" alt="logo" width="80" height="80">
+      <h2>KATA BOOM</h2>
     </div>
 
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
-      <label>Password</label>
-      <input type="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required [disabled]="processing" />
-      <div *ngIf="feedbackEnabled && passwordField.errors">
-        <p *ngIf="passwordField.errors.required" class="validation">password required</p>
-      </div>
-    </div>
+    <form (ngSubmit)="submitFormLogIn(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
 
-    <div class="field submit">
-      <button type="submit" [disabled]="processing">Log in</button>
-      <div *ngIf="feedbackEnabled && form.invalid">
-        <p class="validation">there are errors in the form, please review the fields</p>
-      </div>
-
-      <div *ngIf="error" class="validation">
-        <div [ngSwitch]="error.code">
-          <p *ngSwitchCase="'not-found'">username or password are incorrect</p>
-          <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
+        <label>Username</label>
+        <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required [disabled]="processing" />
+        <div *ngIf="feedbackEnabled && usernameField.errors">
+          <p *ngIf="usernameField.errors.required" class="validation">username required</p>
         </div>
       </div>
+
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && passwordField.errors}">
+        <label>Password</label>
+        <input type="password" name="password" [(ngModel)]="password" #passwordField="ngModel" required [disabled]="processing" />
+        <div *ngIf="feedbackEnabled && passwordField.errors">
+          <p *ngIf="passwordField.errors.required" class="validation">password required</p>
+        </div>
+      </div>
+
+      <div class="btn-login">
+        <button type="submit" [disabled]="processing">Log in</button>
+      </div>
+
+      <div *ngIf="feedbackEnabled && form.invalid">
+        <p class="validation">there are errors in the form, please review the fields</p>
+
+        <div *ngIf="error" class="validation">
+          <div [ngSwitch]="error.code">
+            <p *ngSwitchCase="'not-found'">username or password are incorrect</p>
+            <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="bottom-login">
+      <p>Do not have an accout?</p>
+      <a [routerLink]="['/signup']">Sign up here</a>
     </div>
 
-  </form>
+  </div>
 
-  <p>Do not have an accout?
-    <a [routerLink]="['/signup']">Sign up here</a>
-  </p>
 
 </div>
