@@ -1,13 +1,62 @@
-<div class="loading" *ngIf="!randomKata && !noKatas">...loading...</div>
+<div class="container-katas">
 
-<div *ngIf="noKatas">
-  <h2>{{noKatas}}</h2>
+  <div class="left-side">
+
+    <div class="loading" *ngIf="!randomKata && !noKatas">...loading...</div>
+
+    <div *ngIf="noKatas">
+      <h2>{{noKatas}}</h2>
+    </div>
+
+    <div *ngIf="randomKata">
+      <h2 class="capitalize">Kata - {{randomKata.name}}</h2>
+      <h3>Description:</h3>
+      <p>{{randomKata.description}}</p>
+
+      <div *ngIf="!ableToSubmit && alreadySubmitted">
+        <a [routerLink]='["/profile"]'>Back To Profile</a>
+      </div>
+
+      <h3>Tests:</h3>
+      <div *ngFor="let test of randomKata.tests, let i = index">
+        <div>{{i+1}}. {{randomKata.functionName}}
+          <span *ngIf="oneParameter">
+            <span *ngFor="let param of test.params; let last = last; let first = first">
+              <span *ngIf="!last; first">({{param}}, </span>
+              <span *ngIf="last; first">({{param}}) </span>
+              <span *ngIf="!last">
+                <span *ngIf="!first">{{param}}, </span>
+              </span>
+              <span *ngIf="!first; last">{{param}})</span>
+            </span>
+          </span>
+
+          <span *ngIf="!oneParameter">
+            <span *ngFor="let param of test.params; let last = last, let first = first">
+              <span *ngIf="first">({{param}}, </span>
+              <span *ngIf="!last">
+                <span *ngIf="!first">{{param}}, </span>
+              </span>
+              <span *ngIf="last">{{param}})</span>
+            </span>
+          </span>
+          <p> ---> expected result: {{test.result}}</p>
+        </div>
+      </div>
+
+      <div *ngIf="randomKataResults">
+        <h3>Your Results: </h3>
+        <div *ngFor="let result of randomKataResults; let i = index">
+          <span>{{i+1}}. ---> {{result}} ---> {{finalStatus[i]}}</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </div>
 
-<div *ngIf="randomKata">
-  <h2 class="capitalize">Kata - {{randomKata.name}}</h2>
-  <h3>Description:</h3>
-  <p>{{randomKata.description}}</p>
+<div class="right-side">
 
   <form (ngSubmit)="handleSubmit(form, randomKata._id)" #form="ngForm">
     <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
@@ -49,43 +98,5 @@
 
     </div>
   </form>
-
-  <div *ngIf="!ableToSubmit && alreadySubmitted">
-    <a [routerLink]='["/profile"]'>Back To Profile</a>
-  </div>
-
-  <h3>Tests:</h3>
-  <div *ngFor="let test of randomKata.tests, let i = index">
-    <div>{{i+1}}. {{randomKata.functionName}}
-      <span *ngIf="oneParameter">
-        <span *ngFor="let param of test.params; let last = last; let first = first">
-          <span *ngIf="!last; first">({{param}}, </span>
-          <span *ngIf="last; first">({{param}}) </span>
-          <span *ngIf="!last">
-            <span *ngIf="!first">{{param}}, </span>
-          </span>
-          <span *ngIf="!first; last">{{param}})</span>
-        </span>
-      </span>
-
-      <span *ngIf="!oneParameter">
-        <span *ngFor="let param of test.params; let last = last, let first = first">
-          <span *ngIf="first">({{param}}, </span>
-          <span *ngIf="!last">
-            <span *ngIf="!first">{{param}}, </span>
-          </span>
-          <span *ngIf="last">{{param}})</span>
-        </span>
-      </span>
-      <p> ---> expected result: {{test.result}}</p>
-    </div>
-  </div>
-
-  <div *ngIf="randomKataResults">
-    <h3>Your Results: </h3>
-    <div *ngFor="let result of randomKataResults; let i = index">
-      <span>{{i+1}}. ---> {{result}} ---> {{finalStatus[i]}}</span>
-    </div>
-  </div>
 
 </div>
