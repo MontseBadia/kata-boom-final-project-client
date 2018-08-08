@@ -1,13 +1,31 @@
-<div *ngIf="userKatas">
-  <div *ngFor="let comment of userKatas.comments">
-    <p>{{comment.provider.username}} said:</p>
-    <p>{{comment.text}}</p>
-    <div *ngIf="myOwnKatas">
-      <button (click)="handleRemoveOneComment(comment._id)">Remove Comment</button>
+<div id="comment-card">
+
+  <div *ngIf="userKatas">
+    <div *ngFor="let comment of userKatas.comments" class="comment-card-content">
+
+      <div class="d-flex">
+        <div class="avatar">
+          <img src="{{comment.provider.avatar}}" alt="friend avatar" width="30" height="30">
+        </div>
+
+        <div class="comment-info">
+          <p class="capitalize">{{comment.provider.username}}:</p>
+          <p>{{comment.text}}</p>
+        </div>
+      </div>
+
+      <div *ngIf="myOwnKatas">
+        <button (click)="handleRemoveOneComment(comment._id)">
+          <span>X</span>
+        </button>
+      </div>
     </div>
   </div>
-</div>
 
-<div *ngIf="!userKatas.comments.length">
-  <p>There are no comments for this kata</p>
+  <div *ngIf="!userKatas.comments.length">
+    <p>
+      <small>There are no comments for this kata</small>
+    </p>
+  </div>
+
 </div>

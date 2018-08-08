@@ -1,5 +1,14 @@
-<h3>{{friend.username}}</h3>
-<p>Picture will be shown here</p>
-<p>Email will be shown here</p>
+<div id="friend-card">
 
-<a [routerLink]="['/profile', friend.username]">See {{friend.username}}'s Profile</a>
+  <div class="friend-card-content">
+    <div class="avatar">
+      <img src="{{friend.avatar}}" alt="friend avatar" width="40" height="40">
+    </div>
+
+    <div class="profile-info">
+      <h3 class="capitalize">{{friend.username}}</h3>
+      <a [routerLink]="['/profile', friend.username]">See Profile</a>
+    </div>
+  </div>
+
+</div>

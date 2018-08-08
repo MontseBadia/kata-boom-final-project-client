@@ -1,44 +1,48 @@
-<div *ngIf="kata">
-    <h3 class="capitalize">{{kata.kata.name}}</h3>
-    <p>{{kata.kata.description}}</p>
-    <h3>Solution:</h3>
-    <pre>{{kata.solution}}</pre>
+<div id="kata-card">
 
-    <div *ngIf="!myOwnKatas">
-        <button (click)="showAddComment=!showAddComment">
-            <p *ngIf="!showAddComment">Add Comment</p>
-            <p *ngIf="showAddComment">Hide Add Comment</p>
-        </button>
+    <div *ngIf="kata">
+        <h2 class="capitalize">{{kata.kata.name}}</h2>
+        <p>{{kata.kata.description}}</p>
+        <!-- <h3>Solution:</h3> -->
+        <pre>{{kata.solution}}</pre>
 
-        <div [ngClass]="{'hide': !showAddComment}">
-            <div *ngIf="showAddComment">
-                <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
-            </div>
+        <div *ngIf="!myOwnKatas">
+            <button (click)="showAddComment=!showAddComment">
+                <span *ngIf="!showAddComment">Add Comment</span>
+                <span *ngIf="showAddComment">Hide Add Comment</span>
+            </button>
 
-            <div *ngIf="error" class="validation">
-                <div [ngSwitch]="error.code">
-                    <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+            <div [ngClass]="{'hide': !showAddComment}">
+                <div *ngIf="showAddComment">
+                    <app-add-comment [kataId]="kata.kata._id" [userId]="userId" (addNewComment)="handleAddComment($event)"></app-add-comment>
+                </div>
+
+                <div *ngIf="error" class="validation">
+                    <div [ngSwitch]="error.code">
+                        <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <button (click)="showComment=!showComment">
-        <p *ngIf="showComment">Hide Comments</p>
-        <p *ngIf="!showComment">Show Comments</p>
-    </button>
+        <button (click)="showComment=!showComment">
+            <span *ngIf="showComment">Hide Comments</span>
+            <span *ngIf="!showComment">Show Comments</span>
+        </button>
 
-    <div [ngClass]="{'hide': !showComment}">
-        <div *ngIf="userKatas">
-            <app-comment-card [userKatas]="userKatas" [myOwnKatas]="myOwnKatas" (removeComment)="handleRemoveComment($event)"></app-comment-card>
+        <div [ngClass]="{'hide': !showComment}">
+            <div *ngIf="userKatas">
+                <app-comment-card [userKatas]="userKatas" [myOwnKatas]="myOwnKatas" (removeComment)="handleRemoveComment($event)"></app-comment-card>
+            </div>
         </div>
     </div>
-</div>
 
-<div *ngIf="!kata && error" class="validation">
-    <div [ngSwitch]="error.code">
-        <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+    <div *ngIf="!kata && error" class="validation">
+        <div [ngSwitch]="error.code">
+            <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+        </div>
     </div>
-</div>
 
-<!-- <button (click)="getKataSolution(kata.kata._id)">Edit Kata</button> -->
+    <!-- <button (click)="getKataSolution(kata.kata._id)">Edit Kata</button> -->
+
+</div>
