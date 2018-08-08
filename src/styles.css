@@ -431,31 +431,6 @@ form .field.has-error input {
   height: 90%;
 }
 
-.error-box {
-  background-color: #c05c48;
-  color: #fff;
-  padding: 6px 7px 7px;
-  font-size: 12px;
-  color: #fff;
-}
-
-.success-box-tests {
-  color: rgb(95, 186, 113);
-  padding: 6px 7px 7px 0;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.0vw;
-}
-
-.success-box-kata {
-  color: rgb(21, 102, 37);
-  padding: 6px 7px 7px 0;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 0.0vw;
-}
-
-
 #kata-page .content-box {
   background-color: #3c3c3c;
   padding: 20px;
@@ -616,7 +591,36 @@ form .field.has-error input {
   background-color: #065c37;
 } */
 
+p.error-box {
+  background-color: #c05c48;
+  color: #fff;
+  padding: 6px 7px 7px;
+  font-size: 12px;
+  color: #fff;
+  margin-top: 10px !important;
+}
 
+p.success-box-tests {
+  color: rgb(95, 186, 113) !important;
+  padding: 6px 7px 7px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.0vw;
+  margin-top: 10px !important;
+  margin-bottom: 16px;
+  letter-spacing: 0.1vw;
+}
+
+p.success-box-kata {
+  color: rgb(21, 102, 37) !important;
+  padding: 6px 7px 7px 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.0vw;
+  margin-top: 10px !important;
+  margin-bottom: 16px;
+  letter-spacing: 0.1vw;
+}
 
 
 
