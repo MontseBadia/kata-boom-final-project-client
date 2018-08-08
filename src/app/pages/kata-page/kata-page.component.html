@@ -1,7 +1,6 @@
-<div class="container-katas">
+<div id="kata-page">
 
   <div class="left-side">
-
     <div class="loading" *ngIf="!randomKata && !noKatas">...loading...</div>
 
     <div *ngIf="noKatas">
@@ -9,94 +8,104 @@
     </div>
 
     <div *ngIf="randomKata">
-      <h2 class="capitalize">Kata - {{randomKata.name}}</h2>
-      <h3>Description:</h3>
-      <p>{{randomKata.description}}</p>
 
-      <div *ngIf="!ableToSubmit && alreadySubmitted">
-        <a [routerLink]='["/profile"]'>Back To Profile</a>
+      <div class="content-box">
+        <h2 class="capitalize">Kata - {{randomKata.name}}</h2>
+        <h3>Description:</h3>
+        <p>{{randomKata.description}}</p>
       </div>
 
-      <h3>Tests:</h3>
-      <div *ngFor="let test of randomKata.tests, let i = index">
-        <div>{{i+1}}. {{randomKata.functionName}}
-          <span *ngIf="oneParameter">
-            <span *ngFor="let param of test.params; let last = last; let first = first">
-              <span *ngIf="!last; first">({{param}}, </span>
-              <span *ngIf="last; first">({{param}}) </span>
-              <span *ngIf="!last">
-                <span *ngIf="!first">{{param}}, </span>
+      <div class="content-box">
+        <h3>Tests:</h3>
+        <div *ngFor="let test of randomKata.tests, let i = index">
+          <div>{{i+1}}. {{randomKata.functionName}}
+            <span *ngIf="oneParameter">
+              <span *ngFor="let param of test.params; let last = last; let first = first">
+                <span *ngIf="!last; first">({{param}}, </span>
+                <span *ngIf="last; first">({{param}}) </span>
+                <span *ngIf="!last">
+                  <span *ngIf="!first">{{param}}, </span>
+                </span>
+                <span *ngIf="!first; last">{{param}})</span>
               </span>
-              <span *ngIf="!first; last">{{param}})</span>
             </span>
-          </span>
 
-          <span *ngIf="!oneParameter">
-            <span *ngFor="let param of test.params; let last = last, let first = first">
-              <span *ngIf="first">({{param}}, </span>
-              <span *ngIf="!last">
-                <span *ngIf="!first">{{param}}, </span>
+            <span *ngIf="!oneParameter">
+              <span *ngFor="let param of test.params; let last = last, let first = first">
+                <span *ngIf="first">({{param}}, </span>
+                <span *ngIf="!last">
+                  <span *ngIf="!first">{{param}}, </span>
+                </span>
+                <span *ngIf="last">{{param}})</span>
               </span>
-              <span *ngIf="last">{{param}})</span>
             </span>
-          </span>
-          <p> ---> expected result: {{test.result}}</p>
+            <p> ---> expected result: {{test.result}}</p>
+          </div>
         </div>
       </div>
 
-      <div *ngIf="randomKataResults">
+      <div class="content-box">
         <h3>Your Results: </h3>
-        <div *ngFor="let result of randomKataResults; let i = index">
-          <span>{{i+1}}. ---> {{result}} ---> {{finalStatus[i]}}</span>
+        <div *ngIf="randomKataResults">
+          <div *ngFor="let result of randomKataResults; let i = index">
+            <span>{{i+1}}. ---> {{result}} ---> {{finalStatus[i]}}</span>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
 
-</div>
 
-<div class="right-side">
+  <div class="right-side">
 
-  <form (ngSubmit)="handleSubmit(form, randomKata._id)" #form="ngForm">
-    <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
-      [durationBeforeCallback]="1000" (textChanged)="onChange($event)" style="min-height: 200px; width:100%; overflow: auto;"></div>
-    <div class="field submit">
-      <button type="submit" [disabled]="testAndSubmit">Test</button>
-      <button type="submit" (click)="testAndSubmit=true" [disabled]="(!ableToSubmit) || (alreadySubmitted)">Submit</button>
+    <form (ngSubmit)="handleSubmit(form, randomKata._id)" #form="ngForm">
+      <h3>Solution:</h3>
+      <div ace-editor [(text)]="text" [mode]="'javascript'" [theme]="'twilight'" [options]="options" [readOnly]="false" [autoUpdateContent]="true"
+        [durationBeforeCallback]="1000" (textChanged)="onChange($event)" style="min-height: 400px; width:100%; overflow: auto;"></div>
+      <div class="field submit">
+        <button class="test" type="submit" [disabled]="testAndSubmit">Test</button>
+        <button class="submit" [ngClass]="{'disabled': (!ableToSubmit || alreadySubmitted)}" type="submit" (click)="testAndSubmit=true"
+          [disabled]="(!ableToSubmit) || (alreadySubmitted)">Submit</button>
 
-      <div *ngIf="!passedTests && feedbackEnabled">
-        <div *ngIf="error">
-          <div [ngSwitch]="error.code" class="validation">
-            <div *ngIf="emptyEditor">
-              <!-- Needed when only function is written -->
-              <p *ngSwitchCase="'no-input-provided'">Please type some input! The result could not be submitted</p>
-              <p *ngSwitchDefault>An unexpected error occured, please try again</p>
-            </div>
-            <div *ngIf="!emptyEditor">
-              <p *ngSwitchCase="'no-input-provided'">Please type some input! The result could not be submitted</p>
-              <p *ngSwitchCase="'unexpected-identifier'">Unexpected identifier! The result could not be submitted</p>
-              <p *ngSwitchDefault>An unexpected error occured, please try again</p>
+        <div *ngIf="!passedTests && feedbackEnabled">
+          <div *ngIf="error">
+            <div [ngSwitch]="error.code">
+              <div *ngIf="emptyEditor">
+                <!-- Needed when only function is written -->
+                <p *ngSwitchCase="'no-input-provided'" class="error-box">Please type some input! The result could not be submitted</p>
+                <p *ngSwitchDefault class="error-box">An unexpected error occured, please try again</p>
+              </div>
+              <div *ngIf="!emptyEditor">
+                <p *ngSwitchCase="'no-input-provided'" class="error-box">Please type some input! The result could not be submitted</p>
+                <p *ngSwitchCase="'unexpected-identifier'" class="error-box">Unexpected identifier! The result could not be submitted</p>
+                <p *ngSwitchDefault class="error-box">An unexpected error occured, please try again</p>
+              </div>
             </div>
           </div>
+          <div *ngIf="!error">
+            <p class="error-box">Ohh..! You have failed the tests. Keep trying</p>
+          </div>
         </div>
-        <div *ngIf="!error">
-          <p class="validation">Ohh..! You have failed the tests. Keep trying</p>
-        </div>
-      </div>
 
-      <div *ngIf="passedTests && feedbackEnabled">
-        <div *ngIf="!testAndSubmit">
-          <p class="validation">CONGRATS!! You have passed the tests</p>
-          <!-- <p style="white-space: pre-wrap">{{inputCode}}</p> -->
+        <div *ngIf="passedTests && feedbackEnabled">
+          <div *ngIf="!testAndSubmit">
+            <p class="success-box-tests">Yay!! You have passed the tests</p>
+            <!-- <p style="white-space: pre-wrap">{{inputCode}}</p> -->
+          </div>
+          <div *ngIf="testAndSubmit">
+            <p class="success-box-kata">CONGRATULATIONS!! Kata submitted successfully!</p>
+            <!-- <p style="white-space: pre-wrap">{{inputCode}}</p> -->
+          </div>
         </div>
-        <div *ngIf="testAndSubmit">
-          <p class="validation">CONGRATS!! Kata submitted successfully!</p>
-          <!-- <p style="white-space: pre-wrap">{{inputCode}}</p> -->
-        </div>
-      </div>
 
-    </div>
-  </form>
+        <div *ngIf="!ableToSubmit && alreadySubmitted">
+          <a [routerLink]='["/profile"]'>Back To Profile</a>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
 
 </div>
