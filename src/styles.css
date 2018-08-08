@@ -76,6 +76,12 @@ html {
   .hide {
     display: none;
   }
+
+  .d-flex {
+    display: flex;
+    align-items: center;
+  }
+  
   
   /* ---- header ---- */
 
@@ -254,6 +260,8 @@ form .field.has-error input {
   color: #fff;
 }
 
+/* pages: profile page -> own profile */
+
 #profile-page .own-profile-content {
   display: flex;
 }
@@ -275,6 +283,8 @@ form .field.has-error input {
   margin-top: 14px;
 }
 
+/* pages: profile page -> random kata */
+
 #profile-page .random-kata {
   background-color: rgb(54, 55, 72);
 }
@@ -284,6 +294,8 @@ form .field.has-error input {
   letter-spacing: 0.1vw;
   margin: 0 0 20px;
 }
+
+/* pages: profile page -> search friends */
 
 #profile-page .search-friends {
   background-color: rgb(54, 66, 72);
@@ -309,6 +321,8 @@ form .field.has-error input {
   margin: 0 0 20px;
 }
 
+/* pages: profile page -> my-friends */
+
 #profile-page .my-friends {
   margin-bottom: 0;
 }
@@ -316,8 +330,9 @@ form .field.has-error input {
 #friend-card .friend-card-content {
   display: flex;
   color: silver;
-  border: 1px solid silver;
-  border-width: thin;
+  /* border: 1px solid rgba(192, 192, 192, 0.467); */
+  background-color: #494848;
+  /* border-width: thin; */
   padding: 10px;
   margin-bottom: 10px;
 }
@@ -339,7 +354,42 @@ form .field.has-error input {
   text-decoration: underline;
 }
 
+/* pages: profile page -> my-katas */
 
+#kata-card h2 {
+  color: rgb(74, 114, 99);
+}
+
+#kata-card pre {
+  background-color: rgb(43, 42, 42);
+  padding: 10px;
+}
+
+#kata-card {
+  border-bottom: 1px solid #494848;
+  padding-bottom: 15px;
+}
+
+#comment-card .comment-card-content {
+  display: flex;
+  color: silver;
+  padding: 5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#comment-card .comment-card-content .comment-info {
+  margin-left: 20px;
+}
+
+#comment-card .comment-card-content .comment-info p {
+  margin: 0px;
+  font-size: 11.5px;
+}
+
+#comment-card .avatar {
+  margin-top: 8px;
+}
 
 
 
@@ -350,7 +400,6 @@ form .field.has-error input {
   background-color: #ecb613;
   color: #131414;
   border: 0;
-  width: auto;
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 0.2px;
@@ -371,7 +420,6 @@ form .field.has-error input {
   background-color: #628ed6;
   color: #131414;
   border: 0;
-  width: auto;
   cursor: pointer;
   font-size: 12px;
   letter-spacing: 0.2px;
@@ -393,11 +441,11 @@ form .field.has-error input {
   margin: 0;
 }
 
-#profile-page .my-friends button {
+#profile-page .my-friends button,
+#profile-page .my-katas button {
   background-color: #555a63;
   color: rgb(182, 218, 221);
   border: 0;
-  width: auto;
   cursor: pointer;
   font-size: 8px;
   font-weight: lighter;
@@ -411,10 +459,35 @@ form .field.has-error input {
   transition: background-color 0.15s ease-in-out;
 }
 
-#profile-page .my-friends button:hover {
+#profile-page .my-friends button:hover,
+#profile-page .my-katas button:hover {
   background-color: #444850;
-
 }
+
+#kata-card button {
+  color: #bb432c;
+  border-color: #bb432c;
+  background-color: rgba(0,0,0,0.2);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: lighter;
+  letter-spacing: 0.1vw;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 5px 7px 5px;
+  border-radius: 4px;
+}
+
+#kata-card button+div {
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
 
 
 
