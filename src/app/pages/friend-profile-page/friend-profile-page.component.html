@@ -1,29 +1,42 @@
 <div id="friend-page">
 
-  <div *ngIf="friend">
-    <p>{{friend.username}}</p>
-    <img src="{{friend.avatar}}" alt="friend avatar" width="50" height="50">
-    <p>Email will be shown here</p>
-    <p>Katas: 31</p>
-    <p>Followers: 200</p>
-    <p>Following: 578</p>
-    <p>GitHub: MasterOfTheMasters</p>
+  <div class="top-part">
+    <div *ngIf="friend">
 
-    <h3>Katas:</h3>
-    <div *ngIf="friend.katas">
-      <div *ngFor="let item of friend.katas">
-        <app-kata-card [kata]="item" [userId]="friend._id"></app-kata-card>
+      <div class="content-box friend-profile-content">
+        <div class="avatar">
+          <img src="{{friend.avatar}}" alt="friend avatar" width="100" height="100">
+        </div>
+        <div class="profile-info">
+          <h3 class="capitalize">{{friend.username}}</h3>
+          <h4>Katas: 31</h4>
+          <h4>Followers: 200</h4>
+          <h4>Following: 578</h4>
+          <h4>GitHub: MasterOfTheMasters</h4>
+        </div>
       </div>
-    </div>
 
-    <div *ngIf="!friend.katas.length">
-      <p>{{friend.username}} hasn't done any Kata yet!</p>
     </div>
   </div>
 
-  <div *ngIf="!friend && error" class="validation">
-    <div [ngSwitch]="error.code">
-      <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+  <div class="bottom-part">
+    <div class="friend-katas">
+      <h3>Katas:</h3>
+      <div *ngIf="friend.katas">
+        <div *ngFor="let item of friend.katas">
+          <app-kata-card [kata]="item" [userId]="friend._id"></app-kata-card>
+        </div>
+      </div>
+
+      <div *ngIf="!friend.katas.length">
+        <p>{{friend.username}} hasn't done any Kata yet!</p>
+      </div>
+
+      <div *ngIf="!friend && error" class="validation">
+        <div [ngSwitch]="error.code">
+          <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+        </div>
+      </div>
     </div>
   </div>
 

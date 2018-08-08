@@ -459,11 +459,15 @@ form .field.has-error input {
   color:rgb(95, 186, 113)
 }
 
+#friend-page {
+  background-color: rgb(54, 66, 72);
+  margin: 49px 12px 0;
+}
 
 
 
 
-/* components: profile page */
+/* components */
 
 #profile-page .random-kata button {
   background-color: #ecb613;
@@ -596,7 +600,6 @@ p.error-box {
   color: #fff;
   padding: 6px 7px 7px;
   font-size: 12px;
-  color: #fff;
   margin-top: 10px !important;
 }
 
@@ -621,6 +624,12 @@ p.success-box-kata {
   margin-bottom: 16px;
   letter-spacing: 0.1vw;
 }
+
+
+
+
+
+
 
 
 
