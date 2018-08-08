@@ -13,14 +13,14 @@ html {
     padding: 0;
   }
   
-  
   /* ---- typography ---- */
   
   body {
-    color: #111;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 147%;
+    background-color: rgb(48,49,51);
+    font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+    font-size: 14px;
+    line-height: 140%;
+    font-weight: lighter;
   }
   
   h1 {}
@@ -28,34 +28,126 @@ html {
   h2 {}
   
   h3 {}
-  
-  p {
+
+  h4 {
+    font-weight: lighter;
+    font-size: 11.5px;
+    letter-spacing: 0.1vw;
     margin: 0;
   }
   
+  p {
+    letter-spacing: 0.1vw;
+  }
+
+  a {
+    text-decoration: none;
+    color: silver;
+  }
+
+  /* ---- general layout ---- */
+
+  .container {
+    margin: 0 10px;;
+  }
+
+  p {
+    margin-bottom: 16px;
+  }
   
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  a:hover {
+    text-decoration: none;
+    opacity: .7;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .capitalize {
+    text-transform: capitalize;   
+  }
+
+  .hide {
+    display: none;
+  }
   
-  /* ---- layout ---- */
-  
+  /* ---- header ---- */
+
   #site-header {
-    padding: 30px 0;
-    color: white;
-    background: #75addd;
+    color: silver;
+    background-color: rgb(29, 29, 31);
+    border-bottom:20px solid rgb(50,50,50);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
   }
-  
+
+  #site-header .header-content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #site-header li {
+    display: inline-block;
+    margin-left: 20px;
+  }
+
+  /* #site-header a {
+    color: silver;
+  } */
+
+  #site-header .logo li {
+    margin-right: 5px;
+    margin-left: 0;
+  }
+
+  /* ---- footer ---- */
+
   #site-footer {
-    color: white;
-    padding: 60px 0;
-    background: #75addd;
+    color: silver;
+    padding: 10px;
+    background-color: rgb(29, 29, 31);
+    border-top:20px solid rgb(50,50,50);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 3;
   }
+
+  #site-footer p {
+    margin: 0;
+  }
+
+  /* ---- layout ---- */
   
   #site-main {
     margin-bottom: 60px;
   }
+
+
+
+
+
+
   
-  .container {
-    margin: 0 20px;
-  }
+
+
+  
+
+
+
+
+
+
+  
+
   
   .section {
     margin-bottom: 20px;
@@ -64,14 +156,12 @@ html {
   
   @media (min-width: 768px) {
     .container {
-      max-width: 728px;
-      margin: 0 auto;
+      /* max-width: 100%; */
+      /* margin: 0 auto; */
     }
   }
 
-  .hide {
-    display: none;
-  }
+
   
   /* -- forms -- */
 
@@ -119,4 +209,249 @@ form .field.has-error input {
 	border: 1px solid  red;
 }
   
-  /* ---- components ---- */
+/* ---- components ---- */
+
+
+
+
+
+/* pages: profile page */
+
+#profile-page {
+  display: flex;
+  width: 100%;
+}
+
+#profile-page .left-side {
+  width: 33.5%;    
+  position: fixed;
+  left: 20px;
+  height: 100%;
+  margin-top: 49px;
+  z-index: 2;
+  overflow-y: scroll;
+  height: 90%;
+}
+  
+#profile-page .right-side {
+  width: 62%;
+  position: fixed;
+  right: 20px;
+  top: 18px;
+  height: 84%;
+  background-color: rgb(29, 29, 31);
+  color: silver;
+  margin-top: 49px;
+  padding: 2%;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+#profile-page .content-box {
+  background-color: #3c3c3c;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+#profile-page .own-profile-content {
+  display: flex;
+}
+
+#profile-page .own-profile-content h3 {
+  color: #c43e4c;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#profile-page .own-profile-content .profile-info {
+  margin-left: 20px;
+}
+
+#profile-page .own-profile-content .avatar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 14px;
+}
+
+#profile-page .random-kata {
+  background-color: rgb(54, 55, 72);
+}
+
+#profile-page .random-kata h3 {
+  font-weight: lighter;
+  letter-spacing: 0.1vw;
+  margin: 0 0 20px;
+}
+
+#profile-page .search-friends {
+  background-color: rgb(54, 66, 72);
+}
+
+#profile-page .search-friends input {
+  font-size: 11px;
+  cursor: text;
+  background-color: rgb(183, 186, 139) !important;
+  transition: background-color 0.15s ease-in-out;
+  width: 100%;
+  padding: 10px;
+  border: none;
+}
+
+#profile-page .search-friends input:hover {
+  background-color: rgb(216, 218, 187) !important;
+}
+
+#profile-page .search-friends h3 {
+  font-weight: lighter;
+  letter-spacing: 0.1vw;
+  margin: 0 0 20px;
+}
+
+#profile-page .my-friends {
+  margin-bottom: 0;
+}
+
+#friend-card .friend-card-content {
+  display: flex;
+  color: silver;
+  border: 1px solid silver;
+  border-width: thin;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#friend-card .friend-card-content .profile-info {
+  margin-left: 20px;
+}
+
+#friend-card .avatar {
+  display: flex;
+}
+
+#friend-card .friend-card-content .profile-info h3 {
+  margin: 0px;
+  margin-bottom: 5px;
+}
+
+#friend-card .friend-card-content .profile-info a {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+/* components: profile page */
+
+#profile-page .random-kata button {
+  background-color: #ecb613;
+  color: #131414;
+  border: 0;
+  width: auto;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 9px 10px 7px;
+  border-radius: 4px;
+  border: 1px solid #ecb613;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#profile-page .random-kata button:hover {
+  background-color: #b88c08;
+}
+
+#profile-page .search-friends button {
+  background-color: #628ed6;
+  color: #131414;
+  border: 0;
+  width: auto;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 9px 10px 7px;
+  border-radius: 4px;
+  border: 1px solid#628ed6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#profile-page .search-friends button:hover {
+  background-color: #486fae;
+}
+
+#profile-page .search-friends form .submit {
+  padding: 0;
+  margin: 0;
+}
+
+#profile-page .my-friends button {
+  background-color: #555a63;
+  color: rgb(182, 218, 221);
+  border: 0;
+  width: auto;
+  cursor: pointer;
+  font-size: 8px;
+  font-weight: lighter;
+  letter-spacing: 0.1vw;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 5px 7px 5px;
+  border-radius: 4px;
+  border: 1px solid #555a63;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#profile-page .my-friends button:hover {
+  background-color: #444850;
+
+}
+
+
+
+
+
+
+
+
+.mobile-forbidden{
+  -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: url('https://www.shareicon.net/data/2016/09/21/831311_phone_512x512.png') no-repeat center center;
+    background-color: rgb(48,49,51);
+    background-size: 0%;
+}
+
+@media (max-width:767px){
+  .mobile-forbidden{
+    z-index: 10000;
+    opacity: 1;
+    background-size: 48%;
+  }
+}
+@media (max-width:450px){
+  .mobile-forbidden{
+    z-index: 1000;
+    opacity: 1;
+    background-size: 70%;
+  }
+}
