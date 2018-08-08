@@ -506,16 +506,18 @@ form .field.has-error input {
 }
 
 
-/* pages: login page */
+/* pages: login/signup page */
 
-#login-page {
+#login-page,
+#signup-page {
   margin-bottom: 20px;
   padding-top: 20px;
   display: flex;
   justify-content: center;
 }
 
-#login-page .login-container {
+#login-page .login-container,
+#signup-page .signup-container {
   background-color: rgb(35,36,37);
   margin-top: 100px;
   height: 70vh;
@@ -526,23 +528,27 @@ form .field.has-error input {
   align-items: center;
 }
 
-#login-page .login-container h2 {
+#login-page .login-container h2,
+#signup-page .signup-container h2 {
   margin: 0;
   font-size: 24px;
   color: silver;
 }
 
-#login-page .login-container img {
+#login-page .login-container img,
+#signup-page .signup-container img {
   margin-top: 20px;
 }
 
-#login-page .login-container label {
+#login-page .login-container label,
+#signup-page .signup-container label {
   color: silver;
   font-size: 15px;
   text-align: center;
 }
 
-#login-page .login-container .img-container {
+#login-page .login-container .img-container,
+#signup-page .signup-container .img-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -550,22 +556,24 @@ form .field.has-error input {
   height: 140px;
 }
 
-#login-page .login-container .bottom-login {
+#login-page .login-container .bottom-login,
+#signup-page .signup-container .bottom-signup {
   text-align: center;
   font-size: 13px;
   color: rgb(135, 132, 132);
 }
 
-#login-page .login-container .bottom-login p {
+#login-page .login-container .bottom-login p,
+#signup-page .signup-container .bottom-signup p {
   margin: 0;
 }
 
-#login-page .login-container .btn-login {
+#login-page .login-container .btn-login,
+#signup-page .signup-container .btn-signup {
   display: flex;
   justify-content: center;
   margin-top: 40px;
 }
-
 
 
 
@@ -747,7 +755,8 @@ p.success-box-kata {
   background-color: #b88c08;
 }
 
-#login-page .login-container button {
+#login-page .login-container button,
+#signup-page .signup-container button {
   background-color: #628ed6;
   color: #131414;
   border: 0;
@@ -763,7 +772,8 @@ p.success-box-kata {
   transition: background-color 0.15s ease-in-out;
 }
 
-#profile-page .search-friends button:hover {
+#login-page .login-container button:hover,
+#signup-page .signup-container button:hover {
   background-color: #486fae;
 }
 
