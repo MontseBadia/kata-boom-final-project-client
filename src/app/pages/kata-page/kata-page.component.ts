@@ -17,7 +17,7 @@ import { UserService } from '../../services/user.service';
 export class KataPageComponent implements OnInit {
 
   // DON'T FORGET TO DECLARE ARRAY AS [ ] --> MEMORY CRASHES!!
-  randomKata: { name: string, functionName: string, parameters: [string], tests: [{ params: any, result: any }] };
+  randomKata: { _id: any, name: string, functionName: string, parameters: [string], tests: [{ params: any, result: any }] };
   oneParameter: boolean;
   testAndSubmit = false;
   ableToSubmit = false;
