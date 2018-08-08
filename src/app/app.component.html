@@ -1,19 +1,51 @@
 <header id="site-header">
   <div class="container">
-    nice header
-    <div [ngClass]="{'is-user': user, 'is-anon': anon}">
+    <div [ngClass]="{'is-user': user, 'is-anon': anon}" class="header-content container">
+
+      <div class="logo">
+        <ul>
+          <li>
+            <img src="https://openclipart.org/image/2400px/svg_to_png/183653/cherrybomb.png" alt="logo" width="20" height="13">
+          </li>
+          <li>
+            <span>KATA BOOM</span>
+          </li>
+        </ul>
+
+      </div>
+
       <div *ngIf="loading">
         <span class="username text">loading...</span>
       </div>
+
       <div *ngIf="!loading && user">
-        <a [routerLink]="['/profile']">{{user.username}}</a>
-        <a (click)="logout()">logout</a>
+        <ul>
+          <li>
+            <a [routerLink]="['/']">HOME</a>
+          </li>
+          <li>
+            <a [routerLink]="['/profile']">PROFILE</a>
+          </li>
+          <li>
+            <a (click)="logout()">LOG OUT</a>
+          </li>
+        </ul>
       </div>
+
       <div *ngIf="!loading && anon">
-        <a [routerLink]="['/login']">login</a>
-        <br>
-        <a [routerLink]="['/signup']">signup</a>
+        <ul>
+          <li>
+            <a [routerLink]="['/']">HOME</a>
+          </li>
+          <li>
+            <a [routerLink]="['/login']">LOG IN</a>
+          </li>
+          <li>
+            <a [routerLink]="['/signup']">SIGN UP</a>
+          </li>
+        </ul>
       </div>
+
     </div>
   </div>
 </header>
@@ -23,11 +55,8 @@
 </div>
 
 <footer id="site-footer">
-  <div class="container">
-    <a [routerLink]="['/']">Back Home</a>
-    <!-- How to prevent this from showing in home page? -->
-    <div class="container">
-      nice footer
-    </div>
+  <div class="container center">
+    <p>2018 Montserrat Badia</p>
   </div>
 </footer>
+<!-- <div class="mobile-forbidden"></div> -->
