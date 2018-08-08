@@ -367,6 +367,7 @@ form .field.has-error input {
 #kata-card pre {
   background-color: rgb(43, 42, 42);
   padding: 10px;
+  margin-bottom: 3px;
 }
 
 #kata-card {
@@ -416,7 +417,9 @@ form .field.has-error input {
   z-index: 2;
 }
 
-#kata-page .right-side h3 {
+#kata-page .right-side h3,
+#friend-page .bottom-part h3,
+#friend-page .top-part h3 {
   margin-top: 0;
 }
 
@@ -460,9 +463,50 @@ form .field.has-error input {
 }
 
 #friend-page {
-  background-color: rgb(54, 66, 72);
   margin: 49px 12px 0;
 }
+
+#friend-page .friend-profile-content {
+  background-color: rgb(54, 66, 72);
+  display: flex;
+  padding: 40px 20px 20px !important;
+  color: silver;  
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#friend-page .friend-profile-content .profile-info {
+  margin-left: 20px;
+}
+
+/* #friend-page .avatar {
+  margin-top: 20px;
+} */
+
+#friend-page .bottom-part {
+  background-color: rgb(29, 29, 31);
+  color: silver;
+  padding: 20px 20px 20px;
+}
+
+#add-comment-card textarea {
+  font-size: 11px;
+  background-color: rgb(183, 186, 139);
+  transition: background-color 0.15s ease-in-out;
+  width: 50%;
+  padding: 10px;
+  border: none;
+}
+
+#add-comment-card textarea:hover {
+  background-color: rgb(216, 218, 187);
+}
+
+#add-comment-card .textarea-container {
+  display: flex;
+  align-items: flex-end;
+}
+
 
 
 
@@ -538,15 +582,15 @@ form .field.has-error input {
 }
 
 #kata-card button {
-  color: #bb432c;
-  border-color: #bb432c;
+  color: #c43e4c;
+  border-color: #c43e4c;
   background-color: rgba(0,0,0,0.2);
   cursor: pointer;
   font-size: 10px;
   font-weight: lighter;
   letter-spacing: 0.1vw;
   font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
-  margin: 0;
+  margin: 10px 0 0;
   padding: 5px 7px 5px;
   border-radius: 4px;
 }
@@ -624,6 +668,30 @@ p.success-box-kata {
   margin-bottom: 16px;
   letter-spacing: 0.1vw;
 }
+
+#add-comment-card .textarea-container button {
+  margin-left: 10px;
+  padding: 5px 30px 5px;
+  background-color:#ecb613;
+  border: 1px solid #ecb613;
+  color: #131414;
+  border: 0;
+  border-radius: 4px;
+  font: 400 11px system-ui;
+  letter-spacing: 0.2px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#add-comment-card .textarea-container button:hover {
+  background-color: #b88c08;
+}
+
+
+
+
+
+
+
 
 
 
