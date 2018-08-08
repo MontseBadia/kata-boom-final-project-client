@@ -81,6 +81,10 @@ html {
     display: flex;
     align-items: center;
   }
+
+  .disabled {
+    opacity: 0.3;
+  }
   
   
   /* ---- header ---- */
@@ -391,6 +395,96 @@ form .field.has-error input {
   margin-top: 8px;
 }
 
+/* pages: kata page */
+
+#kata-page {
+  display: flex;
+  width: 100%;
+}
+
+#kata-page .right-side {
+  width: 62%;
+  position: fixed;
+  right: 20px;
+  top: 18px;
+  height: 84%;
+  background-color: rgb(29, 29, 31);
+  color: silver;
+  margin-top: 49px;
+  padding: 2%;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+#kata-page .right-side h3 {
+  margin-top: 0;
+}
+
+#kata-page .left-side {
+  width: 33.5%;    
+  position: fixed;
+  left: 20px;
+  height: 100%;
+  margin-top: 49px;
+  z-index: 2;
+  overflow-y: scroll;
+  height: 90%;
+}
+
+.error-box {
+  background-color: #c05c48;
+  color: #fff;
+  padding: 6px 7px 7px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.success-box-tests {
+  color: rgb(95, 186, 113);
+  padding: 6px 7px 7px 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.0vw;
+}
+
+.success-box-kata {
+  color: rgb(21, 102, 37);
+  padding: 6px 7px 7px 0;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.0vw;
+}
+
+
+#kata-page .content-box {
+  background-color: #3c3c3c;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+#kata-page p {
+  margin: 0 0 5px;
+  color: silver;
+}
+
+#kata-page h3 {
+  margin-top: 0;
+}
+
+#kata-page a {
+  text-decoration: underline;
+}
+
+.red {
+  color: #c05c48;
+}
+
+.green {
+  color:rgb(95, 186, 113)
+}
+
+
 
 
 
@@ -481,6 +575,46 @@ form .field.has-error input {
 #kata-card button+div {
   margin-top: 10px;
 }
+
+#kata-page button.test {
+  background-color: #71cca2;
+  color: #131414;
+  border: 0;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0;
+  padding: 9px 30px 7px;
+  border-radius: 4px;
+  border: 1px solid #71cca2;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#kata-page button.test:hover {
+  background-color: #3d8d68;
+}
+
+#kata-page button.submit {
+  background-color: #0d8c55;
+  color: #131414;
+  border: 0;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 0 20px 0;
+  padding: 9px 30px 7px;
+  border-radius: 4px;
+  border: 1px solid #0d8c55;
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* button.change-color:hover {
+  background-color: #065c37;
+} */
 
 
 
