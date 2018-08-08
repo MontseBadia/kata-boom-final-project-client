@@ -575,6 +575,38 @@ form .field.has-error input {
   margin-top: 40px;
 }
 
+/* pages: home page */
+
+#home-page {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#home-page .btn-container {
+  display: flex;
+  justify-content: center;
+}
+
+#home-page img {
+  margin-top: 80px;
+}
+
+#home-page h1 {
+  font-size: 50px;
+  margin-top: 60px;
+}
+
+#home-page h3 {
+  font-size: 25px;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+
+
+
 
 
 
@@ -777,6 +809,25 @@ p.success-box-kata {
   background-color: #486fae;
 }
 
+#home-page .btn-container button {
+  background-color: #628ed6;
+  color: #131414;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  font-family: "Lato","Helvetica Neue","Helvetica",sans-serif;
+  margin: 80px 0 0;
+  padding: 10px 30px 10px;
+  border-radius: 4px;
+  border: 1px solid#628ed6;
+  transition: background-color 0.15s ease-in-out;
+}
+
+#home-page .btn-container button:hover {
+  background-color: #486fae;
+}
 
 
 
