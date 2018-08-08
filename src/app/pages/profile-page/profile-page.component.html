@@ -1,73 +1,106 @@
-<h3>It's time to train!</h3>
-<button (click)=getRandomKata()>Get random kata</button>
-<div class="error" *ngIf="randomKataError">Sorry, we could not load the katas. Please try again.</div>
+<div id="profile-page">
 
-<h3>Look for friends:</h3>
-<form (ngSubmit)="submitFormSearchFriend(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
-    <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
-        <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required minlength="6" [disabled]="processing"
-            placeholder="your friends' username" />
-        <div *ngIf="feedbackEnabled && usernameField.errors">
-            <p *ngIf="usernameField.errors.required" class="validation">username required</p>
-            <p *ngIf="usernameField.errors.minlength" class="validation">username is too short</p>
-        </div>
-        <div *ngIf="error" class="validation">
-            <div [ngSwitch]="error.code">
-                <p *ngSwitchCase="'not-found'">username does not exist</p>
-                <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+    <div class="left-side">
+        <div class="content-box own-profile-content">
+            <div class="avatar">
+                <img src="{{myUser.avatar}}" alt="user avatar" width="100" height="105">
+            </div>
+            <div class="profile-info">
+                <h3 class="capitalize">{{myUser.username}}</h3>
+                <h4>Katas: 31</h4>
+                <h4>Followers: 200</h4>
+                <h4>Following: 578</h4>
+                <h4>GitHub: MasterOfTheMasters</h4>
             </div>
         </div>
-    </div>
-    <div class="field submit">
-        <button type="submit" [disabled]="processing">SEARCH</button>
-        <div *ngIf="feedbackEnabled && form.invalid">
-            <p class="validation">there are errors in the form, please review the fields</p>
+        <div class="random-kata content-box">
+            <h3>IT'S TIME TO TRAIN YOUR BRAIN!</h3>
+            <button (click)=getRandomKata()>Get random kata</button>
+            <div class="error" *ngIf="randomKataError">Sorry, we could not load the katas. Please try again.</div>
         </div>
-    </div>
-</form>
-
-<div>
-    <button (click)="toggleMyKatas()">
-        <p *ngIf="showKatas">Hide Your Katas</p>
-        <p *ngIf="!showKatas">Show Your Katas</p>
-    </button>
-</div>
 
 
-<div [ngClass]="{'hide': !showKatas}">
-    <h3>Katas you have done:</h3>
-    <div *ngIf="katas">
-        <app-list [katas]="katas" [myOwnKatas]="myOwnKatas" [myId]="myId"></app-list>
-    </div>
-    <div *ngIf="!katas">
-        <div *ngIf="!myKatasError">
-            <p>You haven't done any Kata yet!</p>
+        <div class="content-box search-friends">
+            <h3>Want to share your experience with others?</h3>
+            <form (ngSubmit)="submitFormSearchFriend(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+                <div class="field" [ngClass]="{'has-error': feedbackEnabled && usernameField.errors}">
+                    <input type="text" name="username" [(ngModel)]="username" #usernameField="ngModel" required minlength="6" [disabled]="processing"
+                        placeholder="type a username" />
+                    <div *ngIf="feedbackEnabled && usernameField.errors">
+                        <p *ngIf="usernameField.errors.required" class="validation">username required</p>
+                        <p *ngIf="usernameField.errors.minlength" class="validation">username is too short</p>
+                    </div>
+                    <div *ngIf="error" class="validation">
+                        <div [ngSwitch]="error.code">
+                            <p *ngSwitchCase="'not-found'">username does not exist</p>
+                            <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="field submit">
+                    <button type="submit" [disabled]="processing">SEARCH FOR FRIEND</button>
+                    <div *ngIf="feedbackEnabled && form.invalid">
+                        <p class="validation">there are errors in the form, please review the fields</p>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div *ngIf="myKatasError">
-            <p>Sorry, there was an error. Please try again.</p>
-        </div>
-    </div>
-</div>
-
-<div>
-    <button (click)="toggleMyFriends()">
-        <p *ngIf="showFriends">Hide Your Friends</p>
-        <p *ngIf="!showFriends">Show Your Friends</p>
-    </button>
-</div>
 
 
-<div [ngClass]="{'hide': !showFriends}">
-    <h3>Your Friends:</h3>
-    <div *ngIf="friends">
-        <app-list [friends]="friends"></app-list>
-    </div>
-    <div *ngIf="!friends">
-        <div *ngIf="!myFriendsError">
-            <p>You don't have friends yet!</p>
+
+        <div class="content-box my-friends">
+            <button (click)="toggleMyFriends()">
+                <span *ngIf="showFriends">Hide Your Friends</span>
+                <span *ngIf="!showFriends">Show Your Friends</span>
+            </button>
+
+            <div [ngClass]="{'hide': !showFriends}">
+                <h3>Your Friends</h3>
+                <div *ngIf="friends">
+                    <app-list [friends]="friends"></app-list>
+                </div>
+                <div *ngIf="!friends">
+                    <div *ngIf="!myFriendsError">
+                        <p>You don't have friends yet!</p>
+                    </div>
+                    <div *ngIf="myFriendsError">
+                        <p>Sorry, there was an error. Please try again.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div *ngIf="myFriendsError">
-            <p>Sorry, there was an error. Please try again.</p>
-        </div>
+
+
+
+
     </div>
+
+    <div class="right-side">
+
+        <div class="my-katas">
+            <button (click)="toggleMyKatas()">
+                <span *ngIf="showKatas">Hide Your Katas</span>
+                <span *ngIf="!showKatas">Show Your Katas</span>
+            </button>
+        </div>
+
+
+        <div [ngClass]="{'hide': !showKatas}">
+            <h3>Your Katas</h3>
+            <div *ngIf="katas">
+                <app-list [katas]="katas" [myOwnKatas]="myOwnKatas" [myId]="myId"></app-list>
+            </div>
+            <div *ngIf="!katas">
+                <div *ngIf="!myKatasError">
+                    <p>You haven't done any Kata yet!</p>
+                </div>
+                <div *ngIf="myKatasError">
+                    <p>Sorry, there was an error. Please try again.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>

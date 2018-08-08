@@ -14,6 +14,7 @@ export class ProfilePageComponent implements OnInit {
 
   katas: any;
   username: string;
+  myUser: string;
   feedbackEnabled = false;
   error = null;
   processing = false;
@@ -31,17 +32,22 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit() {
     this.myId = this.authService.getUser()._id;
+    this.myUser = this.authService.getUser();
+    this.showKatas = true;
+    this.showFriends = true;
+    this.loadKatas();
+    this.loadFriends();
   }
 
   toggleMyKatas() {
-    if (!this.showKatas && !this.katas) {
+    if (this.showKatas && !this.katas) {
       this.loadKatas();
     }
     this.showKatas = !this.showKatas;
   }
 
   toggleMyFriends() {
-    if (!this.showFriends && !this.katas) {
+    if (!this.showFriends && this.katas) {
       this.loadFriends();
     }
     this.showFriends = !this.showFriends;
