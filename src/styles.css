@@ -604,6 +604,67 @@ form .field.has-error input {
   margin: 0;
 }
 
+/* pages: not found page */
+
+#not-found-page {
+  margin: 80px 0 0 20px;
+}
+
+#not-found-page {
+  color: silver;
+}
+
+/* pages: search-friends page */
+
+#search-friends-page {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+#search-friends-page .search-friends-container {
+  background-color: rgb(35,36,37);
+  margin-top: 100px;
+  height: 70vh;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#search-friends-page .search-friends-container h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: lighter;
+  letter-spacing: 0.1vw;
+  line-height: 147%;
+}
+
+#search-friends-page .search-friends-container .friend-info {
+  text-align: center;
+  color: silver;
+}
+
+#search-friends-page .search-friends-container a {
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+#search-friends-page .search-friends-container .profile-link {
+  margin-bottom: 40px;
+}
+
+#search-friends-page .search-friends-container h3 {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#search-friends-page .search-friends-container .avatar {
+  margin-top: 50px;
+}
+
 
 
 
@@ -720,7 +781,8 @@ form .field.has-error input {
   background-color: #3d8d68;
 }
 
-#kata-page button.submit {
+#kata-page button.submit,
+#search-friends-page .btn-container button {
   background-color: #0d8c55;
   color: #131414;
   border: 0;
@@ -736,9 +798,9 @@ form .field.has-error input {
   transition: background-color 0.15s ease-in-out;
 }
 
-/* button.change-color:hover {
+#search-friends-page .btn-container button:hover {
   background-color: #065c37;
-} */
+}
 
 p.error-box {
   background-color: #c05c48;
@@ -828,6 +890,9 @@ p.success-box-kata {
 #home-page .btn-container button:hover {
   background-color: #486fae;
 }
+
+
+
 
 
 

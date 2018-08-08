@@ -1,19 +1,33 @@
-<div *ngIf="user">
-  <h3>{{user.username}}</h3>
-  <p>Picture will be shown here</p>
-  <p>Email will be shown here</p>
+<div id="search-friends-page">
+  <div *ngIf="user" class="search-friends-container">
 
-  <button (click)="addFriend(user)">Add Friend</button>
-
-  <div *ngIf="error" class="validation">
-    <div [ngSwitch]="error.code">
-      <p *ngSwitchCase="'friend-already-exists'">{{user.username}} is already your friend</p>
-      <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+    <div class="avatar">
+      <img src="{{user.avatar}}" alt="friend avatar" width="150" height="150">
     </div>
-  </div>
 
-  <div>
-    <a [routerLink]='["/profile"]'>Back To Profile</a>
-  </div>
+    <h3 class="capitalize">{{user.username}}</h3>
 
+    <div class="friend-info">
+      <h4>Katas: 31</h4>
+      <h4>Followers: 200</h4>
+      <h4>Following: 578</h4>
+      <h4>GitHub: MasterOfTheMasters</h4>
+    </div>
+
+    <div class="btn-container">
+      <button (click)="addFriend(user)">Add Friend</button>
+    </div>
+
+    <div *ngIf="error" class="validation">
+      <div [ngSwitch]="error.code">
+        <p *ngSwitchCase="'friend-already-exists'">{{user.username}} is already your friend</p>
+        <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+      </div>
+    </div>
+
+    <div class="profile-link">
+      <a [routerLink]='["/profile"]'>Back To Profile</a>
+    </div>
+
+  </div>
 </div>
