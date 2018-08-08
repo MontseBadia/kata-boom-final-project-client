@@ -12,7 +12,7 @@ import { UserService } from '../../services/user.service';
 
 export class KataCardComponent implements OnInit {
 
-  @Input() kata: any;
+  @Input() kata: { kata: { name: any }, _id: any };
   @Input() userId: any;
   @Input() myOwnKatas: any;
   @Input() myId: any;

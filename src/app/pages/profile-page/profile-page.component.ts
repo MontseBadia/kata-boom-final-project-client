@@ -13,8 +13,8 @@ import { AuthService } from '../../services/auth.service';
 export class ProfilePageComponent implements OnInit {
 
   katas: any;
-  username: string;
-  myUser: string;
+  username: any;
+  myUser: any;
   feedbackEnabled = false;
   error = null;
   processing = false;
