@@ -33,14 +33,14 @@
                     <div *ngIf="error" class="validation">
                         <div [ngSwitch]="error.code">
                             <p *ngSwitchCase="'not-found'">username does not exist</p>
-                            <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+                            <p *ngSwitchDefault>unexpected error, please try again</p>
                         </div>
                     </div>
                 </div>
                 <div class="field submit">
                     <button type="submit" [disabled]="processing">SEARCH FOR FRIEND</button>
                     <div *ngIf="feedbackEnabled && form.invalid">
-                        <p class="validation">there are errors in the form, please review the fields</p>
+                        <p class="validation">the field has errors</p>
                     </div>
                 </div>
             </form>

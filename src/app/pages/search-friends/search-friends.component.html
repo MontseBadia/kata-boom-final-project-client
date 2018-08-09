@@ -21,7 +21,7 @@
     <div *ngIf="error" class="validation">
       <div [ngSwitch]="error.code">
         <p *ngSwitchCase="'friend-already-exists'">{{user.username}} is already your friend</p>
-        <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+        <p *ngSwitchDefault>unexpected error, please try again</p>
       </div>
     </div>
 

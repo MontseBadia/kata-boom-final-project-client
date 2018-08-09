@@ -29,6 +29,7 @@ export class KataPageComponent implements OnInit {
   randomKataResults: [any];
   finalStatus: [any];
   noKatas: string;
+  testLoaded: boolean;
 
   // --- CODE EDITOR VARIABLES
   text: any;
@@ -40,7 +41,7 @@ export class KataPageComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((kataName) => {
       if (kataName.name === 'no-more-katas') { // --- IF USER HAS DONE ALL AVAILABLE KATAS
-        this.noKatas = 'Sorry! We run out of katas for today';
+        this.noKatas = 'Sorry! We have run out of katas for today';
         return;
       }
       this.loadKata(kataName);
@@ -81,8 +82,10 @@ export class KataPageComponent implements OnInit {
     this.kataService.checkKata(this.inputCode, randomKataId)
       .then((data) => {
         this.checkAndSubmit(randomKataId, data);
+        this.testLoaded = true;
       })
       .catch((err) => {
+        this.testLoaded = true;
         this.testAndSubmit = false;
         this.passedTests = false;
         this.ableToSubmit = false;
@@ -109,6 +112,7 @@ export class KataPageComponent implements OnInit {
           .then(() => {
             this.alreadySubmitted = true;
             this.ableToSubmit = false;
+            this.testLoaded = true;
           });
       }
     }
@@ -119,6 +123,7 @@ export class KataPageComponent implements OnInit {
   }
 
   handleSubmit(form, randomKataId) {
+    this.testLoaded = false;
     this.error = '';
     this.passedTests = false;
     this.emptyEditor = true;

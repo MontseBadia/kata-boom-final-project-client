@@ -33,12 +33,12 @@
       </div>
 
       <div *ngIf="feedbackEnabled && form.invalid">
-        <p class="validation">there are errors in the form, please review the fields</p>
+        <p class="validation">the form has errors</p>
 
         <div *ngIf="error" class="validation">
           <div [ngSwitch]="error.code">
             <p *ngSwitchCase="'username-not-unique'">username is taken</p>
-            <p *ngSwitchDefault>an unexpected error occured, please try again</p>
+            <p *ngSwitchDefault>unexpected error, please try again</p>
           </div>
         </div>
       </div>

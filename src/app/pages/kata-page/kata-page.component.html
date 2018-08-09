@@ -4,7 +4,7 @@
     <div class="loading" *ngIf="!randomKata && !noKatas">...loading...</div>
 
     <div *ngIf="noKatas">
-      <h2>{{noKatas}}</h2>
+      <h2 class="no-katas">{{noKatas}}</h2>
     </div>
 
     <div *ngIf="randomKata">
@@ -68,7 +68,7 @@
         <button class="submit" [ngClass]="{'disabled': (!ableToSubmit || alreadySubmitted)}" type="submit" (click)="testAndSubmit=true"
           [disabled]="(!ableToSubmit) || (alreadySubmitted)">Submit</button>
 
-        <div *ngIf="!passedTests && feedbackEnabled">
+        <div *ngIf="!passedTests && feedbackEnabled && testLoaded">
           <div *ngIf="error">
             <div [ngSwitch]="error.code">
               <div *ngIf="emptyEditor">
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <div *ngIf="passedTests && feedbackEnabled">
+        <div *ngIf="passedTests && feedbackEnabled && testLoaded">
           <div *ngIf="!testAndSubmit">
             <p class="success-box-tests">Yay!! You have passed the tests</p>
             <!-- <p style="white-space: pre-wrap">{{inputCode}}</p> -->
